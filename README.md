@@ -3,7 +3,6 @@
 Étudiant en **BUT Informatique** à l'IUT de Lille — Promotion 2025-2026.
 
 [![BUT Informatique](https://img.shields.io/badge/-BUT%20Informatique-4f46e5?style=flat)](https://iut.univ-lille.fr)
-[![GitLab Pages](https://img.shields.io/badge/-Site%20en%20ligne-326CE5?style=flat)](https://romainlefebvre.pages.gitlab.io)
 
 ## À propos
 
@@ -36,8 +35,6 @@ Ce portfolio présente mes projets universitaires, mes compétences techniques e
 ## Déploiement
 
 Le site est automatiquement déployé sur **GitLab Pages** à chaque push sur la branche `master`.
-
-🔗 ** Lien du portfolio ** : https://romainlefebvre.pages.gitlab.io
 
 ## Structure du dépôt
 
