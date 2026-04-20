@@ -12,11 +12,45 @@
     --text: #334155;
     --text-light: #64748b;
     --border: #e2e8f0;
+    --gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
     --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --radius: 8px;
     --radius-sm: 6px;
+}
+
+.icon-sm {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.icon-md {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.icon-lg {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+}
+
+.icon-xl {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+}
+
+.logo-univ {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 6px;
 }
 
 *,
@@ -97,6 +131,7 @@ body {
 }
 
 .nav-links a:hover,
+.nav-links a:focus-visible,
 .nav-links a.active {
     color: #fff;
     background: rgba(255, 255, 255, 0.1);
@@ -218,7 +253,8 @@ body {
     gap: 8px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus-visible {
     background-color: var(--primary-hover);
 }
 
@@ -236,7 +272,8 @@ body {
     gap: 8px;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.5);
 }
@@ -263,7 +300,8 @@ body {
     text-decoration: none;
 }
 
-.social-link:hover {
+.social-link:hover,
+.social-link:focus-visible {
     background: rgba(255, 255, 255, 0.15);
     color: #fff;
     transform: translateY(-3px);
@@ -469,7 +507,8 @@ body {
     transition: transform 0.28s ease;
 }
 
-.sae-card:hover {
+.sae-card:hover,
+.sae-card:focus-visible {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
     border-color: rgba(79, 70, 229, 0.2);
@@ -585,7 +624,8 @@ body {
     margin-top: 16px;
 }
 
-.btn-code:hover {
+.btn-code:hover,
+.btn-code:focus-visible {
     background: var(--primary);
     transform: translateY(-2px);
 }
@@ -605,7 +645,8 @@ body {
     transition: gap 0.2s;
 }
 
-.card-link:hover {
+.card-link:hover,
+.card-link:focus-visible {
     gap: 10px;
 }
 
@@ -681,7 +722,8 @@ footer strong {
     transition: all 0.25s ease;
 }
 
-.contact-card:hover {
+.contact-card:hover,
+.contact-card:focus-visible {
     transform: translateY(-3px);
     box-shadow: var(--shadow);
     border-color: rgba(79, 70, 229, 0.2);
@@ -973,7 +1015,8 @@ footer strong {
     transition: all 0.2s ease;
 }
 
-.skill-badge:hover {
+.skill-badge:hover,
+.skill-badge:focus-visible {
     background: rgba(79, 70, 229, 0.15);
     transform: translateY(-1px);
 }
