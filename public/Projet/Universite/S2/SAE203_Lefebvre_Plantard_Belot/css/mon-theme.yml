@@ -1,0 +1,82 @@
+extends: default
+
+font:
+  catalog:
+    merge: true
+  fallbacks:
+    - Noto Serif
+    - M+ 1mn
+
+page:
+  margin: [15mm, 12mm, 15mm, 12mm]
+  numbering:
+    start-at: after-toc
+
+base:
+  font-color: "333333"
+  font-family: Helvetica
+  line-height: 1.5
+
+heading:
+  font-color: "004b87"
+  font-style: bold
+
+title-page:
+  align: left
+  title-top: 45%
+  title-font-color: "004b87"
+  title-font-style: bold
+
+header:
+  padding: [3, 0]
+  height: 14mm
+  border:
+    color: #dddddd
+    width: 0.25
+  recto:
+    left-content: "image:../img/Forgejo_logo.png[fit=contain, width=40]"
+    right-content: "{section-or-chapter-title} | {page-number}/{page-count}"
+  verso:
+    left-content: "{page-number}/{page-count} | {section-or-chapter-title}"
+    right-content: "image:../img/Forgejo_logo.png[fit=contain, width=40]"
+
+footer:
+  padding: [3, 0]
+  height: 14mm
+  recto:
+    left-content: "image:../img/logo-univ.png[fit=contain, width=100]"
+    center-content: |
+      SAÉ 2.03 +
+      Installation de services réseaux
+    right-content: "image:../img/logo-iut.png[fit=contain, width=50]"
+  verso:
+    left-content: "image:../img/logo-iut.png[fit=contain, width=50]"
+    center-content: |
+      SAÉ 2.03 +
+      Installation de services réseaux
+    right-content: "image:../img/logo-univ.png[fit=contain, width=100]"
+
+table:
+  head:
+    background-color: "004b87"
+    font-color: "ffffff"
+    font-style: bold
+  body:
+    stripe-background-color: "f2f2f2"
+
+title_page:
+  align: center
+  logo:
+    margin_top: 100 # Espacement numérique au lieu de %
+    margin_bottom: 30
+  title:
+    font_size: 28
+    font_color: "1A365D"
+    font_style: bold
+    margin_top: 50
+  authors:
+    font_size: 14
+    font_color: "333333"
+    margin_top: 50
+  revision:
+    margin_top: 20

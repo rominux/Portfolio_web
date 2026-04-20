@@ -1,0 +1,287 @@
+== Semaine 8 : Comparatif Markdown vs AsciiDoc
+
+// _Auteurs : Lefebvre Romain, Plantard Kylian, Belot Emilien_
+
+// Définition d'attributs pour masquer les symboles de tableaux dans les exemples
+:vbar: |
+:plus: +
+:triple: |===
+:sup: >
+
+Dans le cadre de notre projet, nous avons comparé deux langages de balisage léger très populaires : le Markdown et l'<<glossaire-asciidoc, AsciiDoc>>. Voici un grand tableau comparatif détaillant leurs concepts, origines et syntaxes.
+
+[cols="1,2a,2a", options="header"]
+|===
+| Sujet | Markdown (.md) | Asciidoc (.adoc)
+
+| **Description**
+| Langage de balisage léger très populaire, conçu pour être facile à lire et à écrire. Très orienté pour le web et les plateformes collaboratives (ex: GitHub).
+| Langage de balisage léger plus riche et standardisé, conçu initialement pour la rédaction d'articles, de livres techniques et de documentations complexes.
+
+| **Lien vers la documentation officielle**
+| https://daringfireball.net/projects/markdown/[Site officiel Markdown]
+| https://docs.asciidoctor.org/[Documentation Asciidoctor]
+
+| **Origine (Date et Créateurs)**
+| Créé en **2004** par John Gruber (avec l'aide d'Aaron Swartz).
+| Créé en **2002** par Stuart Rackham.
+
+| **Comment convertir (sans extension) vers HTML et PDF**
+| Utilisation classique avec la commande **Pandoc** :
+[source,bash]
+----
+pandoc fichier.md -o fichier.html
+pandoc fichier.md -o fichier.pdf
+----
+
+| Utilisation avec la suite **Asciidoctor** :
+[source,bash]
+----
+asciidoctor fichier.adoc
+asciidoctor-pdf fichier.adoc
+----
+
+
+| **Écrire en gras**
+2+| Pour écrire en gras, il faut utiliser deux astérisques de chaque côté du mot : pass:[**]**mot**pass:[**]
+
+| **Écrire en italique**
+2+| Pour écrire en italique, il faut utiliser un tiret bas: pass:[_]_mot_pass:[_]
+
+| **Écrire en gras ET italique**
+2+| Pour combiner les deux, on cumule les symboles: pass:[**_]**_mot_**pass:[_**]
+
+| **Texte souligné**
+| Le Markdown natif ne possède pas de syntaxe pour souligner. Il faut utiliser les balises HTML : +
+`<u>` [.underline]#mot# `</u>`
+| AsciiDoc gère le soulignement grâce aux rôles : +
+[.underline]# [.underline]#mot# #
+
+| **Texte surligné**
+| Cela dépend des extensions (parfois `==` #mot# `==`), ou via la balise HTML : +
+`<mark>`#mot#`</mark>`
+| AsciiDoc utilise simplement le symbole dièse : +
+# #mot# #
+
+| **Texte barré**
+| On utilise très souvent deux tildes : +
+`~~` [.line-through]#mot# `~~`
+| AsciiDoc utilise les rôles : +
+ [.line-through]# [.line-through]#mot# #
+
+| **Faire des listes à puces (avec sous-liste)**
+| On utilise des astérisques, avec une indentation (espaces) pour le sous-niveau :
+[source,markdown]
+----
+* Élément principal 1
+* Élément principal 2
+  * Sous-élément
+----
+
+| On utilise des astérisques, et on en ajoute un supplémentaire par niveau de profondeur :
+[source,asciidoc]
+----
+* Élément principal 1
+* Élément principal 2
+** Sous-élément
+----
+
+
+| **Faire des listes numérotées**
+| On utilise des nombres suivis d'un point :
+[source,markdown]
+----
+1. Première étape
+2. Deuxième étape
+----
+
+| Asciidoc gère la numérotation automatiquement avec des simples points :
+[source,asciidoc]
+----
+. Première étape
+. Deuxième étape
+----
+
+
+| **Créer un tableau simple**
+| On le dessine avec des barres verticales (`\|`) et des tirets pour séparer l'en-tête :
+[source,markdown]
+----
+\| Colonne 1 \| Colonne 2 \|
+\|-----------\|-----------\|
+\| Valeur 1  \| Valeur 2  \|
+----
+
+| On déclare le nombre de colonnes puis on liste les cellules :
+[source,asciidoc,subs="attributes"]
+----
+[cols="1,1", options="header"]
+{triple}
+{vbar} Colonne 1 {vbar} Colonne 2
+{vbar} Valeur 1  {vbar} Valeur 2
+{triple}
+----
+
+.Résultat :
+[cols="1,1", options="header"]
+!===
+! Colonne 1 ! Colonne 2
+! Valeur 1  ! Valeur 2
+!===
+
+| **Différents types de tableaux (tailles et fusions)**
+| **Très limité.** Le Markdown classique ne gère ni les tailles de colonnes précises, ni la fusion de cellules (il faut coder en HTML).
+| **Très puissant.** +
+On ajuste la taille des colonnes avec `cols`. On fusionne des colonnes avec `2+` et des lignes avec `.2+` :
+[source,asciidoc,subs="attributes"]
+----
+[cols="1,3"]
+{triple}
+2+{vbar} Titre fusionné sur 2 colonnes
+
+.2+{vbar} Case 1 petite haute
+{vbar} Case 2 très large
+
+{vbar} Case 3
+{triple}
+----
+
+.Résultat :
+[cols="1,3"]
+!===
+2+! Titre fusionné sur 2 colonnes
+
+.2+! Case 1 petite haute
+! Case 2 très large
+
+! Case 3
+!===
+
+| **Insérer un lien hypertexte**
+| Le texte est entre crochets, l'URL entre parenthèses : +
+[Debian](https://debian.org)
+| L'URL est au début, le texte est entre crochets à la fin : +
+\https://debian.org[Debian]
+
+| **Insérer une image**
+| Un point d'exclamation, le texte alternatif, puis le lien : +
+![titreAlternatif](image/imageMarkdown.png)
+| La macro image, suivie des attributs (taille, alignement) : +
+`image::image/imageAdoc.png[titreAlternatif, width=50%]`
+
+| **Blocs d'informations (Admonitions : Notes, Avertissements...)**
+| Le Markdown natif ne le gère pas. (Il faut utiliser des extensions spécifiques de Pandoc).
+| Intégré nativement avec des icônes.
+[source,asciidoc]
+----
+[NOTE]
+====
+Ceci est une note.
+====
+----
+
+Résultat :
+[NOTE]
+====
+Ceci est une note.
+====
+
+| **Blocs de code avec coloration syntaxique**
+| Trois accents graves suivis du langage :
+[source,markdown]
+----
+```bash
+echo "Bonjour"
+```
+----
+
+| Directive source suivie du langage, puis délimiteurs :
+[source,asciidoc]
+----
+[source,bash]
+⁠----
+echo "Bonjour"
+⁠----
+----
+
+
+| **Citations (Quotes)**
+2+| On utilise le chevron vers la droite `>` en début de ligne : +
+
+> {sup}Ceci est une citation de texte. +
+
+AsciiDoc offre aussi des blocs avancés :
+[source,asciidoc]
+----
+[quote, Auteur, Source]
+____
+Ceci est une citation avancée en AsciiDoc.
+____
+----
+
+.Résultat :
+[quote, Auteur, Source]
+____
+Ceci est une citation avancée en AsciiDoc.
+____
+
+| **Notes de bas de page**
+| On doit créer une ancre et son contenu :
+
+  Ceci est mon texte[^1].
+  [^1]: Et voici la note de bas de page.
+
+| Tout se fait sur la même ligne avec la balise footnote :
+
+  Ceci est mon texte footnote:[Et voici la note].
+
+|===
+
+////
+Note :
+Bien que nous ayons fait le choix d'utiliser des tableaux simples avec le séparateur classique `|` pour la majorité de notre document par souci de lisibilité, nous avons également étudié le fonctionnement des sous-tableaux imbriqués avec le séparateur `!`.
+
+Le tableau "Résultat" sur la fusion des cellules utilise justement cette syntaxe. Voici ce que cela donnerait si nous devions l'imbriquer dans une cellule d'un tableau principal :
+
+|===
+| Colonne Parent A | Colonne Parent B
+a|
+[cols="1,3"]
+!===
+2+! Titre fusionné sur 2 colonnes
+! Case 1 petite ! Case 2 très large
+!===
+| Cellule Parent classique
+|===
+////
+
+=== Retour d'expérience : Installation locale de l'environnement de compilation
+
+* **Problème rencontré :** Lors de la préparation de notre environnement de travail en local (sur les machines de l'IUT), nous avons été bloqués par l'impossibilité d'installer la suite Asciidoctor de manière globale sur le système, en raison du manque de droits d'administration (accès `root` verrouillé).
+
+* **Solutions envisagées :**
+
+  . _Utiliser des machines virtuelles Linux personnelles_ pour compiler : rejeté car cela alourdit considérablement notre flux de travail collaboratif lors des séances en présentiel.
+  . _Utiliser une image Docker d'Asciidoctor_ : Nous avons suivi vos recommandations de ne pas utiliser Docker pour Asciidoctor, nous avons donc cherché une autre alternative.
+  . _Exploiter le gestionnaire de paquets de Ruby (`gem`)_ pour forcer une installation confinée à notre espace utilisateur.
+
+* **Solution retenue :** Nous avons opté pour la troisième solution, qui est la plus légère et nous rend totalement autonomes sur n'importe quelle machine de l'IUT. Après nous être assurés de la présence de Ruby, nous avons installé les paquets nécessaires localement avec la commande suivante :
+
+[source,bash]
+----
+gem install --user-install asciidoctor asciidoctor-pdf rouge asciidoctor-kroki
+----
+
+Ces quatre paquets nous fournissent respectivement le convertisseur HTML, le convertisseur PDF, la bibliothèque permettant d'appliquer notre thème sombre à la coloration syntaxique des blocs de code et la possibilité de faire des diagrammes.
+
+Enfin, pour que le terminal reconnaisse nos nouvelles commandes de compilation (`asciidoctor` et `asciidoctor-pdf`), il a fallu ajouter le chemin des binaires Ruby locaux à la variable d'environnement `PATH` de notre session utilisateur.
+
+=== Note technique sur la rédaction de ce comparatif
+
+La rédaction de cette section a représenté un défi technique particulier : comment afficher du code source AsciiDoc (contenant des symboles de tableaux `|===`) à l'intérieur d'un tableau lui-même écrit en AsciiDoc sans que le script de conversion ne "casse" la structure globale ?
+
+Pour réussir ce rendu sans erreur de compilation, nous avons mis en œuvre les trois méthodes suivantes :
+
+* **L'utilisation d'attributs de substitution :** Nous avons défini des variables globales au début du document, comme `:triple: |===` et `:vbar: |`. En appelant ces variables (ex: `{triple}`) à l'intérieur de nos exemples, nous empêchons le compilateur de croire que nous fermons prématurément le tableau principal.
+* **L'activation des substitutions dans les blocs :** Pour que ces variables soient bien transformées en symboles visuels dans le rendu final, nous avons ajouté l'option `[source,asciidoc,subs="attributes"]` sur nos blocs de code.
+* **L'échappement de caractères :** Pour certains symboles comme les délimiteurs de blocs de code ou de citations, nous avons utilisé des caractères d'échappement (antislash `\`) ou des espaces insécables pour neutraliser l'interprétation du compilateur tout en conservant la coloration syntaxique.

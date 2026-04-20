@@ -1,0 +1,150 @@
+body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f9f9fb;
+    color: #333333;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+#toc {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 2em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+#toctitle {
+    color: #004b87;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-top: 0;
+    border-bottom: 1px solid #004b87;
+    padding-bottom: 5px;
+}
+#toc ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+#toc ul li a {
+    text-decoration: none;
+    color: #444;
+}
+#toc ul li a:hover {
+    color: #004b87;
+    text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: #004b87;
+    font-weight: 600;
+}
+h2 {
+    border-bottom: 2px solid #004b87;
+    padding-bottom: 5px;
+    margin-top: 1.5em;
+}
+
+.admonitionblock {
+    margin: 1.5em 0;
+}
+.admonitionblock table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.admonitionblock td.icon {
+    width: 50px;
+    text-align: center;
+    color: #004b87;
+    font-size: 2em;
+}
+.admonitionblock td.content {
+    background-color: #ffffff;
+    border-left: 5px solid #004b87;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+table.tableblock {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    margin: 2em 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+table.tableblock thead {
+    background-color: #004b87;
+    color: #ffffff;
+}
+table.tableblock th,
+table.tableblock td {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+}
+table.tableblock tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.listingblock pre {
+    background-color: #272822 !important;
+    color: #f8f8f2 !important;
+    border-radius: 5px;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+#header {
+    text-align: center;
+}
+
+#header .title-logo-image {
+    margin-top: 15vh;
+    margin-bottom: 2em;
+}
+
+#header h1 {
+    font-size: 3.5em;
+    color: #1a365d;
+    margin-bottom: 0.2em;
+    line-height: 1.2;
+}
+
+#header .details {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.5em;
+    font-size: 1.2em;
+    color: #4a5568;
+    margin-top: 1.5em;
+}
+
+#header #toc {
+    text-align: left;
+    margin-top: 3em;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* https://docs.asciidoctor.org/asciidoc/latest/macros/icons-font/ */
+.icon-note::before {
+    content: "\f05a";
+} /* Cercle d'information */
+.icon-tip::before {
+    content: "\f0eb";
+} /* Ampoule */
+.icon-warning::before {
+    content: "\f071";
+} /* Triangle d'avertissement */
+.icon-caution::before {
+    content: "\f06d";
+} /* Symbole de feu */
+.icon-important::before {
+    content: "\f06a";
+} /* Point d'exclamation */

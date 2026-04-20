@@ -1,0 +1,99 @@
+[[faq-semaine11]]
+== Semaine 11 : Questions et Réponses techniques (Forgejo)
+
+// _Auteurs : Lefebvre Romain, Plantard Kylian, Belot Emilien_
+
+// S'affiche uniquement sur la version HTML
+ifdef::backend-html5[]
+[TIP]
+====
+**Navigation rapide :** Pour voir notre déploiement de Forgejo et nos retours d'expérience, cliquez ici : link:SAE203_Tutoriel.html#tuto-semaine11[Aller au Tutoriel de la Semaine 11].
+====
+endif::[]
+
+// S'affiche uniquement sur la version PDF
+ifdef::backend-pdf[]
+[TIP]
+====
+**Navigation rapide :** Pour voir notre déploiement de Forgejo et nos retours d'expérience, veuillez ouvrir le fichier **SAE203_Tutoriel.pdf** au chapitre **Semaine 11**.
+====
+endif::[]
+
+**Question 1 : Qu'est-ce que Forgejo ?** +
+C'est une forge logicielle libre et auto-hébergée, permettant de gérer des dépôts Git et le suivi des bugs (issues) proposant une transition simple de github. +
+Source : https://forgejo.org/[Site officiel de Forgejo]
+
+**Question 2 : Qu'est-ce qu'un fork ?** +
+En développement logiciel, un "fork" (ou embranchement) consiste à copier le code source d'un logiciel existant pour créer un nouveau projet indépendant, souvent suite à un désaccord technique ou éthique avec l'équipe d'origine. +
+Source : https://fr.wikipedia.org/wiki/Fork_(d%C3%A9veloppement_logiciel)[Wikipédia - Fork (développement logiciel)]
+
+**Question 3 : Retracez l'histoire de Forgejo ? Qu’est-ce qui différencie la gouvernance de Forgejo ?** +
+L'histoire commence avec **Gogs**, une forge très légère écrite en Go. Gogs évoluant trop lentement au goût de certains contributeurs, ils ont forké le projet pour créer **Gitea**. Plus récemment, l'entreprise derrière Gitea a pris un virage commercial (création d'une entreprise à but lucratif, Gitea Ltd). En réaction, la communauté a forké Gitea pour créer **Forgejo**. La grande différence réside dans le fait que Gitea est désormais contrôlé par une entreprise commerciale, tandis que Forgejo garantit une gouvernance 100% communautaire et à but non lucratif, empêchant toute privatisation du code. Les 3 projets existent toujours, mais Forgejo semble être le plus actif et le plus suivi par la communauté. +
+Sources :
+
+- https://forgejo.org/2024-02-forking-forward/[Article officiel de Forgejo sur l'histoire du projet]
+- https://blog.gitea.com/welcome-to-gitea/[Annonce officielle de Gitea sur sa création]
+
+**Question 4 : Par défaut, Forgejo écoute sur le port 3000. Pourquoi pas le port 80 (port standard HTTP) ?** +
+Sous Linux, les ports inférieurs à 1024 (appelés ports privilégiés) nécessitent les droits d'administrateur (`root`) pour pouvoir être ouverts et écoutés. Faire tourner une application web complexe comme Forgejo avec les droits `root` est une faille de sécurité majeure. Forgejo tourne donc sous un utilisateur standard et utilise un port non privilégié comme le 3000. En production, on place généralement un "Reverse Proxy" (comme Nginx) qui écoute le port 80 et redirige le trafic. +
+Source : https://www.w3.org/Daemon/User/Installation/PrivilegedPorts.html[W3C - Architecture des ports privilégiés sous Linux]
+
+**Question 5 : Pourquoi SQLite plutôt que PostgreSQL ou MySQL/MariaDB ?** +
+SQLite est une base de données orientée fichier, ultra-légère et ne nécessitant aucune configuration de serveur (pas de service supplémentaire à faire tourner ou à sécuriser). +
+Source : https://www.sqlite.org/whentouse.html[Documentation officielle SQLite]
+
+**Question 6 : Où se trouve le fichier de base de données SQLite ? Qui en est le propriétaire ?** +
+Le fichier se trouve dans le répertoire de travail de l'application `/var/lib/forgejo/data/forgejo.db`. Le propriétaire de ce fichier est l'utilisateur système qui exécute le service Forgejo (`git`), afin qu'il puisse y lire et y écrire les données. +
+Source : https://forgejo.org/docs/next/admin/installation/database-preparation/#sqlite[Documentation Forgejo - Préparation de la base de données SQLite]
+
+.Configuration SQLite de Forgejo sur la page d'installation
+image::img/forgejo-configuration-sqlite.png[Configuration SQLite de Forgejo, width=50%, pdfwidth=50%, align="center"]
+
+**Question 7 : Qu'est-ce qu'un service systemd ?** +
+C'est le gestionnaire de système et de services de Linux. Il permet de démarrer, arrêter et surveiller les processus fonctionnant en arrière-plan, et de s'assurer qu'ils redémarrent en cas de crash. +
+Source : https://wiki.debian.org/fr/systemd[Wiki Debian - systemd]
+
+**Question 8 : Expliquez le fichier de service systemd.** +
+Le fichier se divise en trois parties :
+
+* `[Unit]` qui contient les métadonnées et les dépendances,
+* `[Service]` qui définit comment exécuter l'application (l'utilisateur cible `User=git`, le chemin vers le binaire `ExecStart=...`, etc.)
+* `[Install]` qui définit à quel moment de la séquence de démarrage le service doit être lancé.
+
+Source : https://manpages.debian.org/trixie/systemd/systemd.service.5.en.html[Documentation systemd - Fichier de service]
+
+**Question 9 : Différence entre start, enable et restart ? Comment visualiser les logs ?** +
+
+* `start` lance le service immédiatement
+* `enable` configure le service pour qu'il se lance automatiquement au démarrage de la machine
+* `restart` arrête puis redémarre le service.
+
+Pour visualiser les logs, on utilise la commande `sudo journalctl -u forgejo -f`.
+
+Source : https://manpages.debian.org/trixie/systemd/systemctl.1.en.html[Documentation systemctl - Commandes de gestion des services]
+
+**Question 10 : Examinez les permissions de /etc/forgejo et app.ini. Pourquoi sont-elles importantes ?** +
+Le fichier `app.ini` contient des mots de passe en clair (clés secrètes, mail, configuration interne). Ses permissions doivent être très restrictives (généralement `0640` ou `0600`) pour que seul l'utilisateur propriétaire (`forgejo` et `root`) puisse le lire. +
+Source : https://wiki.debian.org/Permissions[Wiki Debian - Permissions des fichiers]
+
+**Question 11 : Le serveur SSH de Forgejo écoute sur quel port ? Mesures pour un accès Internet ?** +
+Contrairement à d'autres méthodes de déploiement, l'installation recommandée de Forgejo sur Debian suggère d'utiliser le serveur SSH natif du système (OpenSSH), qui écoute sur le port standard `22`. (Dans notre configuration VirtualBox isolée, nous y accédons via une redirection sur le port `2222`). +
+Pour exposer le serveur sur Internet de manière sécurisée, il faudrait:
+
+. Configurer le HTTPS (certificats SSL/TLS via Let's Encrypt).
+. Activer un pare-feu (`ufw`) pour ne laisser passer que les ports nécessaires (80, 443, 22, 2222).
+. Installer `Fail2ban` pour bloquer les tentatives d'attaques par force brute.
+
+Source : https://codeberg.org/forgejo/forgejo/src/tag/v14.0.3/custom/conf/app.example.ini#L146[La configuration par défaut] ne démarre pas le serveur SSH intégré de Forgejo et utilise donc celui du système
+
+**Question 12 : Projet privé vs public ? Ajouter des équipiers, lier une issue à un commit.** +
+Un projet public est lisible (et clonable) par n'importe quel visiteur, même non authentifié. Un projet privé est invisible et inaccessible à moins d'être explicitement invité. +
+Source : https://forgejo.org/docs/next/user/repo-permissions/#profile-and-visibility[Documentation Forgejo - Permissions et visibilité des dépôts]
+
+**Question 13 : lier une issue à un commit.**
+Forgejo permet de fermer automatiquement un ticket lors d'un push en utilisant des mots-clés spécifiques dans le message du commit (ex: `Fixes #1`). +
+Source : https://forgejo.org/docs/next/user/linked-references/#actionable-references-in-pull-requests-and-commit-messages[Documentation Forgejo - Références liées dans les messages de commit]
+
+**Question 13 : Qu'est-ce que CI/CD ? Workflow simple ? Avantages en équipe ?** +
+CI (Continuous Integration) : Automatisation des tests et de la vérification du code à chaque push d'un développeur, garantissant que le nouveau code ne casse pas l'application. CD (Continuous Delivery/Deployment) : Déploiement automatisé de l'application une fois les tests validés. Les avantages sont la réduction massive des bugs, des retours immédiats, la standardisation de la compilation et un gain de temps. +
+Source : https://about.gitlab.com/fr-fr/topics/ci-cd/[GitLab - Guide sur la CI/CD]

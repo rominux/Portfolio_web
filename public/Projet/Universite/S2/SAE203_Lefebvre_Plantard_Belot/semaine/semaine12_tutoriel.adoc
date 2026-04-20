@@ -1,0 +1,87 @@
+== Semaine 12 : Personnalisation avancée du rendu (Templates CSS et PDF)
+
+// _Auteurs : Lefebvre Romain, Plantard Kylian, Belot Emilien_
+
+Conformément aux attentes pour la finalisation de notre projet, cette semaine a été consacrée à l'amélioration visuelle de nos livrables. L'objectif était de s'affranchir du rendu par défaut d'Asciidoctor en créant des templates personnalisés pour nos exports HTML et PDF, tout en respectant la règle d'or : **ne jamais insérer de code HTML brut directement dans le fichier `.adoc`**.
+
+Toute la personnalisation a été gérée via les attributs d'en-tête et des fichiers de style externes.
+
+=== Configuration des métadonnées (En-tête du document)
+
+Pour activer nos personnalisations et extensions, nous avons enrichi l'en-tête de nos documents maîtres (`faq.adoc` et `tutoriel.adoc`) avec plusieurs attributs spécifiques. Comme nous l'avions découvert lors de notre <<Semaine 8 : Comparatif Markdown vs AsciiDoc, étude comparative de la Semaine 8>>, AsciiDoc est extrêmement puissant grâce à ces métadonnées :
+
+[source,asciidoc]
+----
+// Active la coloration syntaxique (vue en Semaine 8) avec un thème sombre
+:source-highlighter: rouge
+:rouge-style: monokai
+
+// Remplace les textes "Note", "Warning" par de vraies icônes FontAwesome
+:icons: font
+
+// Définit le dossier contenant nos styles personnalisés
+:stylesdir: css
+
+// Lie le fichier CSS pour le rendu HTML
+:stylesheet: style.css
+----
+
+=== Création et structure du fichier CSS (Rendu HTML)
+
+Pour le rendu Web (HTML), nous avons créé un fichier `style.css` placé dans le sous-dossier `./css`. Plutôt que de coder des balises HTML dans notre texte, ce fichier CSS cible directement les classes générées automatiquement par le compilateur Asciidoctor.
+
+* **Méthode :** Nous avons inspecté le code source d'une page HTML générée par Asciidoctor pour identifier les bonnes classes (par exemple `.admonitionblock` pour les alertes, ou `#toc` pour le sommaire).
+* **Personnalisations apportées :** Modification de la police principale (`Segoe UI`, `Roboto`), centrage de la page avec une largeur maximale pour le confort de lecture, ajout d'ombres portées sur les tableaux, et coloration des blocs d'admonitions.
+
+==== Comparatif visuel du rendu HTML
+
+Voici l'évolution de notre document avant et après l'application de notre template CSS personnalisé :
+
+[cols="1,1", frame="none", grid="none"]
+|===
+a|
+.Rendu par défaut (Sans CSS)
+image::img/sans-css.png[Rendu Asciidoctor sans CSS, width=100%]
+
+a|
+.Rendu personnalisé (Avec style.css)
+image::img/avec-css.png[Rendu Asciidoctor avec CSS, width=100%]
+|===
+
+=== Création et structure du fichier YAML (Rendu PDF)
+
+Le compilateur `asciidoctor-pdf` n'utilise pas le CSS. Il repose sur un système de template au format YAML. Nous avons donc créé le fichier `mon-theme.yml` dans le dossier `./css`.
+
+Ce fichier définit les variables de mise en page pour le PDF :
+
+* `page_size: A4` et les marges (`page_margin`).
+* Les couleurs de base (`base_font_color`, `base_border_color`).
+* La personnalisation de la page de garde (taille du titre, logo éventuel).
+* Le formatage des blocs de code pour qu'ils ressemblent à un terminal (fond sombre, texte clair).
+
+=== Compilation avec nos templates personnalisés
+
+L'intégration de ces fichiers de style, couplée à notre besoin de générer des diagrammes via l'extension Kroki (comme expliqué précédemment), a nécessité de mettre à jour notre script d'automatisation `convertdoc.sh`.
+
+La commande de compilation lit automatiquement l'en-tête du document pour appliquer le CSS, mais il a fallu ajouter les chemins stricts pour le thème PDF, ainsi que les paramètres requis pour l'exécution de Kroki (`-r asciidoctor-kroki`) et l'autorisation des requêtes réseau (`-a allow-uri-read`) :
+
+[source,bash]
+----
+# Compilation du HTML (lit le :stylesheet: style.css automatiquement + active Kroki)
+asciidoctor -r asciidoctor-kroki -a allow-uri-read tutoriel.adoc -o SAE203_Tutoriel.html
+
+# Compilation du PDF avec indication stricte du thème YAML et activation de Kroki
+asciidoctor-pdf -r asciidoctor-kroki -a allow-uri-read -a pdf-theme=css/mon-theme.yml tutoriel.adoc -o SAE203_Tutoriel.pdf
+----
+
+[NOTE]
+====
+Le script reproduit ensuite exactement les mêmes commandes pour compiler le fichier `faq.adoc` afin de générer les 4 livrables en une seule exécution.
+====
+
+=== Retour d'expérience et difficultés rencontrées
+
+Lors de cette dernière phase, nous avons dû faire face à plusieurs défis techniques :
+
+1. **La gestion des chemins (Paths) :** Au début, le CSS ne s'appliquait pas car notre fichier maître cherchait le style à la racine. Nous avons résolu cela en définissant explicitement `:stylesdir: css` dans l'en-tête.
+2. **Personnalisation limitée du PDF :** Contrairement au CSS, le YAML pour PDF est plus rigide. Nous avons dû faire des compromis sur certains éléments de design, notamment les marges et la typographie, pour garantir une bonne lisibilité.

@@ -1,0 +1,208 @@
+[[tuto-semaine11]]
+== Semaine 11 : Tutoriel - Installation de Forgejo
+
+// _Auteurs : Lefebvre Romain, Plantard Kylian, Belot Emilien_
+
+// S'affiche uniquement sur la version HTML
+ifdef::backend-html5[]
+[TIP]
+====
+**Navigation rapide :** Pour consulter les réponses aux questions théoriques sur Forgejo, cliquez ici : link:SAE203_FAQ.html#faq-semaine11[Aller à la FAQ de la Semaine 11].
+====
+endif::[]
+
+// S'affiche uniquement sur la version PDF
+ifdef::backend-pdf[]
+[TIP]
+====
+**Navigation rapide :** Pour consulter les réponses aux questions théoriques sur Forgejo, veuillez ouvrir le fichier **SAE203_FAQ.pdf** au chapitre **Semaine 11**.
+====
+endif::[]
+
+[NOTE]
+====
+**Présentation** +
+Ce tutoriel détaille l'installation, la configuration et la sécurisation de Forgejo, une forge logicielle libre et auto-hébergée (permettant de gérer des dépôts Git, le suivi des bugs et l'intégration continue) sur notre serveur Debian.
+====
+
+===  Installation du binaire et configuration de l'utilisateur système
+
+Pour commencer, nous avons téléchargé l'exécutable de Forgejo footnote:[https://forgejo.org/download/], créé un utilisateur système dédié (`git`) sans mot de passe, préparé les dossiers nécessaires, puis configuré et lancé le service via les commandes suivantes footnote:[https://forgejo.org/docs/latest/admin/installation/binary/]:
+
+[source,bash]
+----
+wget https://codeberg.org/forgejo/forgejo/releases/download/v14.0.3/forgejo-14.0.3-linux-amd64 <1>
+sudo cp forgejo-14.0.3-linux-amd64 /usr/local/bin/forgejo
+sudo chmod 755 /usr/local/bin/forgejo <2>
+sudo adduser --system --shell /bin/bash --gecos 'Git Version Control' --group --disabled-password --home /home/git git <3>
+sudo mkdir /var/lib/forgejo
+sudo chown git:git /var/lib/forgejo && sudo chmod 750 /var/lib/forgejo <4>
+sudo wget -O /etc/systemd/system/forgejo.service https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/contrib/systemd/forgejo.service <5>
+sudo systemctl daemon-reload
+sudo systemctl enable forgejo.service
+sudo systemctl start forgejo.service <6>
+# installation sur localhost:3000
+sudo systemctl stop forgejo.service
+sudo chmod 750 /etc/forgejo && sudo chmod 640 /etc/forgejo/app.ini <7>
+----
+<1> Téléchargement de la version précompilée de Forgejo.
+<2> Copie de l'exécutable dans le chemin système (`/usr/local/bin`) et attribution des droits d'exécution.
+<3> Création de l'utilisateur système dédié `git`, sans mot de passe, pour exécuter le service de manière sécurisée (principe du moindre privilège).
+<4> Création du répertoire de données principal et restriction des droits de lecture/écriture au seul utilisateur `git`.
+<5> Récupération du fichier de service officiel pour permettre à <<glossaire-systemd, `systemd`>> de gérer Forgejo en arrière-plan.
+<6> Rechargement du démon systemd, activation au démarrage automatique, et premier lancement du service.
+<7> Après l'installation via l'interface web (sur le port 3000), arrêt du service pour verrouiller drastiquement les permissions du fichier de configuration sensible `app.ini`.
+
+**Accès à l'interface web depuis la machine hôte** +
+Pour pouvoir réaliser l'étape de configuration web depuis le navigateur de notre machine physique (via `http://localhost:3000`), nous avons dû préalablement configurer une redirection de port dans VirtualBox. La carte réseau de notre VM étant configurée en mode NAT, cette étape est indispensable pour faire communiquer l'hôte et l'invité.
+
+Cette opération vient s'ajouter à la redirection du port 2222 que nous avions déjà mise en place précédemment pour notre accès SSH (voir <<forward-ssh, problème de connexion SSH de la semaine 7>>).
+
+.Redirection du port 3000 dans les paramètres réseau de VirtualBox
+image::img/vbox-forwarding.png[Redirection de port VirtualBox, width=75%, align="center"]
+
+===  Choix de la base de données et de l'architecture réseau
+
+Pour la base de données, nous avons choisi <<glossaire-sqlite, **SQLite**>>, une base de données orientée fichier, ultra-légère et ne nécessitant aucune configuration de serveur (pas de service supplémentaire à faire tourner ou à sécuriser). Le fichier se trouve dans le répertoire de travail de l'application. Le propriétaire de ce fichier est l'utilisateur système qui exécute le service Forgejo (`git`), afin qu'il puisse y lire et y écrire les données.
+
+Nous avons vérifié sa présence avec la commande :
+[source,bash]
+----
+ls -l /var/lib/forgejo/data/forgejo.db
+----
+
+[CAUTION]
+====
+**Risques de sécurité liés aux ports privilégiés** +
+Côté réseau, Forgejo écoute par défaut sur le port **3000**. Sous Linux, les ports inférieurs à 1024 (appelés ports privilégiés) nécessitent les droits d'administrateur (`root`) pour pouvoir être ouverts et écoutés. Faire tourner une application web complexe comme Forgejo avec les droits `root` est une faille de sécurité majeure. Forgejo tourne donc sous un utilisateur standard (`git`) et utilise un port non privilégié. En production, on place généralement un <<glossaire-reverseproxy, "Reverse Proxy">> (comme Nginx ou Apache) qui a les droits d'écouter le port 80 ou 443 et qui redirige le trafic vers le port 3000.
+====
+
+===  Gestion du service systemd
+
+Nous utilisons **systemd**, le gestionnaire de système et de services de Linux, pour démarrer, arrêter et surveiller les processus fonctionnant en arrière-plan. Le fichier de service (`/etc/systemd/system/forgejo.service`) se découpe ainsi :
+
+* `[Unit]` : Contient les métadonnées et les dépendances.
+* `[Service]` : Définit comment exécuter l'application (`User=git`, `ExecStart=...`).
+* `[Install]` : Définit à quel moment de la séquence de démarrage le service doit être lancé (`multi-user.target`).
+
+Voici les commandes `systemctl` utilisées pour gérer le service (start pour lancer, enable pour activer au démarrage, restart pour redémarrer), et `journalctl` pour visualiser les logs :
+
+[source,bash]
+----
+# Gérer le service
+sudo systemctl enable forgejo
+sudo systemctl start forgejo
+sudo systemctl restart forgejo
+
+# Visualiser les logs en direct (follow)
+sudo journalctl -u forgejo -f
+----
+
+===  Sécurité
+
+Pour sécuriser l'installation, nous sommes intervenus sur plusieurs points :
+
+**Accès Internet :** Si le serveur était exposé, il faudrait configurer le HTTPS (Let's Encrypt), activer un pare-feu (`ufw`) pour les ports (80, 443, 22, 2222) et installer `Fail2ban`.
+
+.Architecture de redirection de ports (NAT VirtualBox)
+[plantuml, schema-reseau, png]
+----
+@startuml
+skinparam monochrome true
+skinparam packageStyle rect
+skinparam shadowing false
+
+node "Machine Hôte (Physique)" {
+    component [Navigateur Web] as Browser
+    component [Client SSH (Terminal)] as SSHClient
+
+    node "Interface de bouclage (127.0.0.1)" {
+        portin "Port 3000" as P3000H
+        portin "Port 2222" as P2222H
+    }
+}
+
+cloud "NAT VirtualBox / Port Forwarding" as NAT
+
+node "Machine Virtuelle (Debian 13)" {
+    portout "Port 3000" as P3000G
+    portout "Port 22" as P22G
+
+    component [Forgejo Service] as Forgejo
+    component [OpenSSH Server] as SSHD
+}
+
+Browser --> P3000H : http://localhost:3000
+SSHClient --> P2222H : ssh -p 2222 user@localhost
+
+P3000H ..> NAT
+P2222H ..> NAT
+
+NAT ..> P3000G : Redirection
+NAT ..> P22G : Redirection
+
+P3000G --> Forgejo
+P22G --> SSHD
+@enduml
+----
+
+[IMPORTANT]
+====
+**Sécurité du fichier de configuration (app.ini)** +
+Le fichier `app.ini` généré par Forgejo contient des informations hautement sensibles, telles que vos clés secrètes (`SECRET_KEY`) et les identifiants de la base de données. Il est #impératif# de restreindre ses droits d'accès de manière stricte. Seul l'utilisateur système exécutant le service (généralement `git`) doit pouvoir le lire et le modifier (ex: `chmod 600 app.ini`), afin d'éviter toute compromission critique du serveur.
+====
+
+
+[source,bash]
+----
+# Restreindre les permissions
+sudo chmod 750 /etc/forgejo
+sudo chmod 640 /etc/forgejo/app.ini
+sudo chown -R forgejo:forgejo /etc/forgejo
+----
+
+===  Tests d'utilisation approfondis
+
+Nous avons testé la différence d'accès : un projet **public** est lisible et clonable par n'importe quel visiteur, tandis qu'un projet **privé** est invisible et inaccessible à moins d'être invité.
+Nous avons testé la fermeture automatique d'un ticket (issue) en utilisant des mots-clés spécifiques (ex: `Fixes #1`) dans le message de commit.
+Enfin, nous avons renseigné notre clé SSH publique dans Forgejo pour s'authentifier de manière sécurisée sans taper de mot de passe :
+
+[source,bash]
+----
+# 1. Créer sa clé SSH (si non existante)
+ssh-keygen -t ed25519 -C "kylian.plantard.etu@univ-lille.fr"
+
+# 2. Cloner en utilisant le port SSH personnalisé (ex: 2222)
+git clone ssh://git@localhost:2222/utilisateur/projet.git
+
+# 3. Lier un commit à l'issue numéro 3
+git commit -m "Correction du bug d'affichage. Fixes #3"
+git push
+----
+
+===  Intégration et livraison continues (<<glossaire-cicd, CI/CD>>)
+
+La **CI (Continuous Integration)** automatise les tests et la vérification du code à chaque fois qu'un développeur pousse des modifications, ce qui garantit que le nouveau code ne casse pas l'application. La **CD (Continuous Delivery)** automatise le déploiement. Cela permet une réduction massive des bugs, des retours immédiats, une standardisation de la compilation et un gain de temps.
+
+Voici un exemple de fichier Workflow Forgejo Actions (`.forgejo/workflows/build.yml`) :
+[source,yaml]
+----
+name: Compilation AsciiDoc
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v3
+      - name: Installation Asciidoctor
+        run: sudo apt-get install -y asciidoctor
+      - name: Compilation HTML
+        run: asciidoctor rapport.adoc
+----
+
+=== Retour d'expérience et difficultés rencontrées
+
+* **La politique des mots de passe :** Lors de la création de nos comptes, nous avons remarqué que Forgejo applique des règles de sécurité strictes par défaut. Il impose notamment des mots de passe d'une longueur minimale de **8 caractères**.
+* **Le piège de l'affichage du port SSH :** Le tutoriel d'installation officiel de Forgejo sur Debian suggère d'utiliser le serveur SSH natif du système (qui écoute sur le port 22), plutôt que de lancer un serveur SSH interne à Forgejo. Le problème est qu'avec notre configuration VirtualBox en NAT, nous avions redirigé le port `2222` de la machine hôte vers le port `22` de la machine invitée. Conséquence : l'interface web de Forgejo affichait une URL de clonage erronée avec le port standard (`ssh://git@localhost:22/...`), ce qui faisait échouer nos `git clone` depuis l'hôte.
+Pour corriger cet affichage, nous avons dû modifier le fichier de configuration `/etc/forgejo/app.ini` et mettre manuellement le paramètre `SSH_PORT = 2222`. Ainsi, le vrai serveur SSH écoute toujours sur le port 22 de la VM, mais l'interface web affiche la bonne URL avec le port redirigé pour les visiteurs.

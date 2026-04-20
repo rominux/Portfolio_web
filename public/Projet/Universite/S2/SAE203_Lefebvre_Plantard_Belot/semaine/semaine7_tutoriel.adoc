@@ -1,0 +1,115 @@
+[[tuto-semaine7]]
+== Semaine 7 : Tutoriel - Préparation de la machine virtuelle et OS de base
+
+// _Auteurs : Lefebvre Romain, Plantard Kylian, Belot Emilien_
+
+// S'affiche uniquement sur la version HTML
+ifdef::backend-html5[]
+[TIP]
+====
+**Navigation rapide :** Pour consulter les réponses aux questions théoriques de cette étape, cliquez ici : link:SAE203_FAQ.html#faq-semaine7[Aller à la FAQ de la Semaine 7].
+====
+endif::[]
+
+// S'affiche uniquement sur la version PDF
+ifdef::backend-pdf[]
+[TIP]
+====
+**Navigation rapide :** Pour consulter les réponses aux questions théoriques de cette étape, veuillez ouvrir le fichier **SAE203_FAQ.pdf** au chapitre **Semaine 7**.
+====
+endif::[]
+
+[NOTE]
+====
+**Présentation** +
+Ce tutoriel détaille étape par étape la création, l'installation et la configuration de notre environnement de travail sous Debian 13 dans VirtualBox, ainsi que son automatisation.
+====
+
+===  Création de la machine virtuelle dans VirtualBox
+
+La première étape consiste à préparer le "matériel virtuel" qui va accueillir notre serveur. Dans VirtualBox, nous avons cliqué sur "Nouvelle" et configuré la machine selon le cahier des charges :
+
+* **Nom de la machine** : `s2.03`
+* **Type de système** : Linux / Debian (64-bit)
+* **Mémoire vive (RAM)** : 2048 Mo (C'est le minimum recommandé pour faire tourner l'environnement graphique MATE de manière fluide sans saturer la partition d'échange).
+* **Disque dur** : 20 Go (alloué dynamiquement, avec une seule partition contenant tout le système).
+* **Réseau** : #Laissé par défaut# sur "<<glossaire-nat, NAT>>", ce qui permet à la machine d'avoir accès à Internet tout en étant protégée et isolée du réseau physique de l'IUT.
+
+.Récapitulatif de la configuration VirtualBox
+image::img/vbox-config-recap-sae203.png[Configuration de la VM, pdfwidth=60%, align="center"]
+
+===  Installation de l'OS de base (Debian 13)
+
+Une fois la machine créée, nous y avons inséré l'image disque (ISO) de Debian et lancé l'installation graphique. Les choix cruciaux lors de cette étape ont été :
+
+. **Le nom d'hôte** : Défini sur `serveur`.
+. **Le miroir réseau** : Nous avons utilisé le miroir local de le plus proche `http://debian.polytech-lille.fr` pour accélérer le téléchargement des paquets.
+. **Les utilisateurs** :
+  * Un mot de passe robuste a été défini pour l'administrateur (`root`).
+  * Un compte utilisateur standard nommé `user` a été créé pour l'utilisation standard.
+. **La sélection des logiciels (Tasksel)** : Nous avons décoché l'<<glossaire-envbureau, environnement>> GNOME (trop lourd) pour choisir **MATE** (plus léger). Nous avons également coché le serveur Web et le serveur SSH pour nos futurs besoins réseau.
+
+.Sélection des logiciels lors de l'installation de Debian
+image::img/debian-selection-logiciels.png[Sélection des logiciels, pdfwidth=60%, align="center"]
+
+===  Configuration post-installation et Suppléments invités
+
+Une fois le système installé et redémarré, plusieurs configurations manuelles ont été nécessaires pour rendre la machine parfaitement utilisable :
+
+**A. Ajout des droits d'administration (sudo)** +
+L'utilisateur `user` ne pouvait pas exécuter de commandes administrateur. Nous avons basculé sur la console texte (`tty1` via kbd:[Ctrl+Alt+F1]) dans Virtualbox, il faut faire menu:Entrée[Soft Keyboard], nous nous sommes connectés en `root`, et avons tapé la commande suivante :
+[source,bash]
+----
+usermod -aG sudo user
+----
+man 8 usermod footnote:[https://manpages.debian.org/trixie/passwd/usermod.8.en.html[Page de manuel usermod]]
+
+**B. Installation des Additions Invité (Guest Additions)** +
+Pour activer le redimensionnement dynamique de la fenêtre et le presse-papiers partagé, nous avons inséré le CD virtuel des suppléments depuis le menu VirtualBox menu:Périphériques[Insérer l'image CD des Additions Invités...] , puis l'avons monté et exécuté dans le terminal :
+[source,bash]
+----
+sudo mount /dev/cdrom /mnt
+sudo /mnt/VBoxLinuxAdditions.run
+----
+man 8 mount footnote:[https://manpages.debian.org/trixie/mount/mount.8.en.html[Page de manuel mount]]
+
+Un redémarrage a suffi pour appliquer ces changements.
+
+===  Automatisation de l'installation (Preseed)
+
+Pour ne pas avoir à refaire ces étapes manuellement, nous avons modifié le fichier de configuration automatisée <<glossaire-preseed, preseed-fr.cfg>> présent sur l'ISO fournie.
+
+Nous y avons imposé l'installation de l'environnement MATE :
+[source,plaintext]
+----
+d-i tasksel/first multiselect standard, mate-desktop
+----
+
+Nous avons ajouté les paquets supplémentaires demandés pour la SAÉ :
+[source,plaintext]
+----
+d-i pkgsel/include string sudo git sqlite3 curl bash-completion fastfetch
+----
+
+Enfin, pour que l'utilisateur soit directement dans le groupe sudo à l'installation, nous avons modifié cette ligne :
+[source,diff]
+----
+-d-i passwd/user-default-groups string audio cdrom video
++d-i passwd/user-default-groups string audio cdrom video sudo
+----
+
+[WARNING]
+====
+**Sécurité liée à l'automatisation (Preseed)** +
+L'utilisation d'un fichier de configuration automatisé implique souvent de devoir stocker des mots de passe en clair (ou très faiblement chiffrés) directement dans le fichier `preseed.cfg`. Il est crucial de restreindre l'accès à l'image ISO modifiée et de ne jamais l'héberger sur un dépôt Git public pour éviter toute faille de sécurité majeure.
+====
+
+[NOTE]
+====
+Conformément aux suggestions du sujet, nous avons installé et exécuté l'utilitaire `fastfetch`. Bien que purement informatif, c'est un grand classique que nous connaissions déjà et que nous apprécions particulièrement pour afficher fièrement le logo Debian et les statistiques de notre machine !
+====
+
+===  Retour d'expérience et difficultés rencontrées
+[[forward-ssh]]
+* **Problème de connexion SSH :** En voulant tester la commande `ssh user@10.0.2.15` depuis notre machine hôte, la connexion échouait indéfiniment (Timeout). Après diagnostic, nous avons compris que le réseau NAT de VirtualBox agissait comme un routeur bloquant les connexions entrantes.
+* **La solution :** Nous avons dû configurer manuellement une règle de <<glossaire-portforwarding, "Redirection de ports" (Port Forwarding)>> dans les paramètres réseau de VirtualBox (Port hôte 2222 vers Port invité 22) pour que la connexion réussisse.

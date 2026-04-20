@@ -1,0 +1,117 @@
+= SAÉ 2.03 : Installation de services réseaux (Question Réponse)
+Lefebvre Romain; Plantard Kylian; Belot Emilien
+:title-page:
+:title-logo-image: image:img/logo-univ.png[pdfwidth=3in,align=center]
+// Définit la date de génération ou de rendu du document
+:date: {docdate}
+// Intègre les images directement dans le fichier HTML final (autonome)
+:data-uri:
+// Active la Table des Matières (Table Of Contents)
+:toc:
+// Renomme le titre par défaut du sommaire (qui est en anglais) en français
+:toc-title: Table des matières
+// Définit la profondeur du sommaire (ici, il affichera jusqu'aux sous-titres de niveau 4)
+:toclevels: 4
+// Active la numérotation automatique des sections (1., 1.1., 1.2...)
+:sectnums:
+// Active les macros d'interface (permet d'utiliser kbd:[Ctrl+C] pour générer un visuel de touche de clavier)
+:experimental:
+// Utilise une police d'icônes (FontAwesome) au lieu de texte pour les blocs [NOTE], [WARNING], etc.
+:icons: font
+// Utilise la bibliothèque "rouge" pour la coloration syntaxique des blocs de code source
+:source-highlighter: rouge
+// Applique le thème "monokai" à "rouge" (donne un fond noir et un texte coloré au code source)
+:rouge-style: monokai
+// Indique à Asciidoctor que les fichiers de style se trouvent dans le sous-dossier "css"
+:stylesdir: css
+// Écrase le design par défaut d'Asciidoctor pour utiliser notre propre fichier CSS (pour le rendu HTML)
+:stylesheet: style.css
+
+include::semaine/semaine7_faq.adoc[]
+
+<<<
+
+include::semaine/semaine10_faq.adoc[]
+
+<<<
+
+include::semaine/semaine11_faq.adoc[]
+
+<<<
+
+== Webographie / Sources
+
+[bibliography]
+=== Système d'exploitation Debian & Linux
+* Projet Debian. _À propos de Debian_. https://www.debian.org/intro
+* Projet Debian. _Historique du projet_. https://www.debian.org/doc/manuals/project-history/intro.en.html
+* Projet Debian. _Les versions de Debian_. https://www.debian.org/doc/manuals/project-history/releases.en.html
+* Manuel Debian. _Cycle de vie d'une version_. https://www.debian.org/doc/manuals/debian-handbook/sect.release-lifecycle.en.html
+* Projet Debian. _Informations sur Debian 13 (Trixie)_. https://www.debian.org/releases/trixie/index.html
+* Wiki Debian. _Long Term Support (LTS) & ELTS_. https://wiki.debian.org/LTS et https://wiki.debian.org/LTS/Extended
+* Wiki Debian. _Origine des noms de code (Toy Story)_. https://wiki.debian.org/ToyStory
+* Mailing List Debian. _Annonce de la version Forky_. https://lists.debian.org/debian-devel-announce/2025/01/msg00004.html
+* Documentation Debian. _Configuration matérielle requise_. https://www.debian.org/releases/stable/amd64/ch03s04.fr.html
+* FAQ Debian. _Qu'est-ce qu'une image CD/ISO ?_ https://www.debian.org/CD/faq/index.fr.html#what-is
+* Manuel Debian. _Sécurité de la pré-configuration (Preseed)_. https://www.debian.org/releases/stable/amd64/apbs01.fr.html#preseed-security
+* Manuel Debian. _Sécurité de la pré-configuration (Preseed)_. https://www.debian.org/releases/stable/amd64/apbs04.en.html#preseed-account
+* Wikipédia. _Processeur 64 bits_. https://fr.wikipedia.org/wiki/Processeur_64_bits
+
+[bibliography]
+=== Environnements de Bureau & Services réseaux
+* Wiki Debian. _Environnements de bureau (GNOME, MATE)_. https://wiki.debian.org/fr/DesktopEnvironment
+* Wiki Debian. _Serveur Web_. https://wiki.debian.org/fr/WebServer
+* Wikipédia. _Serveur mandataire (Proxy)_. https://fr.wikipedia.org/wiki/Proxy
+
+[bibliography]
+=== Commandes et Manpages Linux
+* Manpages Debian. _Commande ip_. https://manpages.debian.org/trixie/iproute2/ip.8.en.html
+* Manpages Debian. _Commande sudo_. https://manpages.debian.org/trixie/sudo/sudo.8.en.html
+* Manpages Debian. _Commande su_. https://manpages.debian.org/trixie/util-linux/su.1.en.html
+* Manpages Debian. _Commandes groups_. https://manpages.debian.org/trixie/coreutils/groups.1.en.html
+* Manpages Debian. _Commande id_. https://manpages.debian.org/trixie/coreutils/id.1.en.html
+* Manpages Debian. _Commande uname_. https://manpages.debian.org/trixie/coreutils/uname.1.en.html
+* Manpages Debian. _Commande mount_. https://manpages.debian.org/trixie/util-linux/mount.8.en.html
+* Wiki Debian. _Tasksel_. https://wiki.debian.org/fr/tasksel
+* Wiki Debian. _systemd_. https://wiki.debian.org/fr/systemd
+* Manpages Debian. _Fichier de service systemd_. https://manpages.debian.org/trixie/systemd/systemd.service.5.en.html
+* Manpages Debian. _Commandes de gestion des services (systemctl)_. https://manpages.debian.org/trixie/systemd/systemctl.1.en.html
+* Wiki Debian. _Permissions des fichiers_. https://wiki.debian.org/Permissions
+
+[bibliography]
+=== Virtualisation (VirtualBox)
+* Documentation VirtualBox. _Matériel réseau émulé_. https://www.virtualbox.org/manual/ch06.html#nichardware
+* Documentation VirtualBox. _Mode réseau NAT et Redirection de ports_. https://www.virtualbox.org/manual/ch06.html#network_nat et https://www.virtualbox.org/manual/ch06.html#natforward
+* Wiki Debian. _Additions Invité VirtualBox (Guest Additions)_. https://wiki.debian.org/fr/VirtualBox#VirtualBox_Guest_Additions
+
+[bibliography]
+=== Architecture & Bases de données
+* W3C. _Architecture des ports privilégiés sous Linux_. https://www.w3.org/Daemon/User/Installation/PrivilegedPorts.html
+* Documentation officielle SQLite. _When to use SQLite_. https://www.sqlite.org/whentouse.html
+
+[bibliography]
+=== Contrôle de version et Forges (Git, GitLab, Forgejo & Gitea)
+* Documentation Git. _Dépôts distants (Remotes) et Fetch vs Pull_. https://git-scm.com/book/fr/v2/Les-bases-de-Git-Travailler-avec-des-dépôts-distants
+* Documentation Git. _Le répertoire Git_. https://git-scm.com/book/fr/v2/Démarrage-rapide-À-propos-de-la-gestion-de-version
+* Documentation Git. _Les Branches et la fusion_. https://git-scm.com/book/fr/v2/Les-branches-avec-Git-Les-branches-en-bref
+* Documentation Git. _Résolution de conflits_. https://git-scm.com/book/fr/v2/Les-branches-avec-Git-Les-conflits-de-fusion
+* Documentation Git. _Les protocoles réseau (SSH, HTTP, etc.)_. https://git-scm.com/book/fr/v2/Git-sur-le-serveur-Les-protocoles
+* Documentation Github. _Génération clé SSH_. https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key
+* Documentation Git. _Commandes (init, log, merge, gitignore, blame, gitk, git-gui)_. https://git-scm.com/docs
+* Documentation GitLab. _Clonage d'un dépôt_. https://docs.gitlab.com/ee/user/project/repository/
+* Documentation GitLab. _Merge Requests_. https://docs.gitlab.com/ee/user/project/merge_requests/
+* GitLab. _Guide sur la CI/CD_. https://about.gitlab.com/fr-fr/topics/ci-cd/
+* Dépôt GitHub. _Projet Ungit_. https://github.com/FredrikNoren/ungit
+* Site officiel Forgejo. _Accueil_. https://forgejo.org/
+* Documentation Forgejo. _Installation binaire_. https://forgejo.org/docs/latest/admin/installation/
+* Documentation Forgejo. _Permissions et visibilité des dépôts_. https://forgejo.org/docs/next/user/repo-permissions/#profile-and-visibility
+* Documentation Forgejo. _Références liées dans les messages de commit_. https://forgejo.org/docs/next/user/linked-references/#actionable-references-in-pull-requests-and-commit-messages
+* Codeberg / Forgejo. _Configuration par défaut du serveur SSH_.  https://codeberg.org/forgejo/forgejo/src/tag/v14.0.3/custom/conf/app.example.ini#L146
+* Forgejo Blog. _Article officiel sur l'histoire du projet_. https://forgejo.org/2024-02-forking-forward/
+* Gitea Blog. _Annonce officielle de Gitea sur sa création_. https://blog.gitea.com/welcome-to-gitea/
+* Wikipédia. _Fork (développement logiciel)_. https://fr.wikipedia.org/wiki/Fork_(d%C3%A9veloppement_logiciel)
+
+[bibliography]
+=== Langages de Balisage
+* Site officiel Markdown. _Daring Fireball_. https://daringfireball.net/projects/markdown/
+* Documentation Asciidoctor. https://docs.asciidoctor.org/

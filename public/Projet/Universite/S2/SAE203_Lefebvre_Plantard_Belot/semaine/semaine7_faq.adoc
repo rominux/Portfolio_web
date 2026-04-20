@@ -1,0 +1,146 @@
+[[faq-semaine7]]
+== Semaine 7 : Questions et Réponses techniques
+
+// _Auteurs : Lefebvre Romain, Plantard Kylian, Belot Emilien_
+
+// S'affiche uniquement sur la version HTML
+ifdef::backend-html5[]
+[TIP]
+====
+**Navigation rapide :** Pour voir notre démarche d'installation détaillée, cliquez ici : link:SAE203_Tutoriel.html#tuto-semaine7[Aller au Tutoriel de la Semaine 7].
+====
+endif::[]
+
+// S'affiche uniquement sur la version PDF
+ifdef::backend-pdf[]
+[TIP]
+====
+**Navigation rapide :** Pour voir notre démarche d'installation détaillée, veuillez ouvrir le fichier **SAE203_Tutoriel.pdf** au chapitre **Semaine 7**.
+====
+endif::[]
+
+**Question 1 : Que signifie "64-bit" ?** +
+Cela désigne l'architecture du processeur capable de traiter des données par blocs de 64 bits. C'est l'architecture la plus courante pour les systèmes modernes. +
+Source : https://fr.wikipedia.org/wiki/Processeur_64_bits[Wikipédia - Processeur 64 bits]
+
+**Question 2 : Quelle est la configuration réseau de la carte réseau virtuelle émulée par défaut ?** +
+Par défaut, VirtualBox émule un adaptateur réseau ethernet `Intel PRO/1000 MT Desktop` avec un câble virtuel connecté. `PCNet FAST III` est l'adaptateur par défaut pour les anciennes machines, mais les Debian utilisent le nouvel adaptateur. +
+Source : https://www.virtualbox.org/manual/ch06.html#nichardware[Manuel officiel VirtualBox]
+
+**Question 3 : Pourquoi allouer 2048 Mo de RAM à la VM ? Que se passerait-il avec seulement 512 Mo ?** +
+2048 Mo permettent de faire tourner confortablement l'installation ainsi que l'environnement graphique MATE. Avec seulement 512 Mo, le système utiliserait massivement la partition d'échange (Swap), rendant la machine extrêmement lente, et l'interface graphique pourrait même refuser de se lancer par manque de mémoire. +
+Source : https://www.debian.org/releases/stable/amd64/ch03s04.fr.html[Documentation Debian - Configuration matérielle]
+
+**Question 4 : Quel est le mode réseau par défaut dans VirtualBox ?** +
+Le mode NAT. Il isole la VM tout en lui donnant accès à Internet via la connexion de la machine hôte. +
+Source : https://www.virtualbox.org/manual/ch06.html#network_nat[Documentation VirtualBox - Mode NAT]
+
+**Question 5 : Quelle est l'adresse IP de votre VM et comment l'obtenir ?** +
+La commande utilisée est `ip address`. L'adresse IP locale attribuée par le NAT est `10.0.2.15`. +
+Source : https://manpages.debian.org/trixie/iproute2/ip.8.en.html[Page de manuel de la commande IP]
+
+**Question 6 : Quelle est l'adresse de la passerelle de la VM ?** +
+La commande utilisée est `ip route`. La passerelle par défaut est `10.0.2.2`. Elle correspond au routeur virtuel créé par VirtualBox pour le mode NAT. +
+Source : https://manpages.debian.org/trixie/iproute2/ip.8.en.html[Page de manuel de la commande IP]
+
+**Question 7 : Qu'est-ce qu'un fichier iso bootable ?** +
+C'est une image disque (une copie exacte d'un CD/DVD) contenant les fichiers nécessaires pour amorcer (booter) un ordinateur et installer un système d'exploitation. +
+Source : https://www.debian.org/CD/faq/index.fr.html#what-is[FAQ officielle des images CD Debian]
+
+**Question 8 : Que sont MATE et GNOME ?** +
+Ce sont des Environnements de Bureau (Desktop Environments) pour Linux. Ils fournissent l'interface graphique (fenêtres, icônes, barres des tâches). https://wiki.debian.org/Gnome[GNOME] est plus lourd et moderne, https://wiki.debian.org/MATE[MATE] est un dérivé plus léger. +
+Source : https://wiki.debian.org/fr/DesktopEnvironment[Wiki Debian - Environnements de bureau]
+
+**Question 9 : Qu'est-ce qu'un serveur mandataire (proxy) ?** +
+C'est un serveur qui agit comme intermédiaire entre les requêtes d'un client (notre VM) et un autre serveur (Internet). Il peut filtrer, mettre en cache ou sécuriser les connexions. +
+Source : https://fr.wikipedia.org/wiki/Proxy[Wikipédia - Serveur mandataire]
+
+**Question 10 : Qu'est-ce qu'un serveur web ?** +
+Un logiciel (comme Apache ou Nginx) qui répond aux requêtes HTTP/HTTPS pour distribuer des pages web à des clients (navigateurs). +
+Source : https://wiki.debian.org/fr/WebServer[Wiki Debian - Serveur Web]
+
+**Question 11 : Quel logiciel de serveur SSH a été installé ? Comment vérifier qu’il est bien démarré ?** +
+Le paquet installé est `openssh-server`. On vérifie son état avec la commande `systemctl status ssh`.
+
+**Question 12 : Pourquoi la connexion SSH (ssh user@10.0.2.15) échoue-t-elle avec un "Timeout" ?** +
+Parce que le mode réseau NAT de VirtualBox crée un réseau séparé de celui de l'hôte. Il faut configurer une redirection de ports (Port Forwarding) dans VirtualBox pour que cela fonctionne. +
+Source : https://www.virtualbox.org/manual/ch06.html#natforward[Documentation VirtualBox - Redirection de ports]
+
+**Question 13 : Comment peut-on savoir à quels groupes appartient l’utilisateur user ?** +
+Pour savoir à quels groupes appartient l'utilisateur `user`, on utilise la commande `groups user` ou `id user` +
+Source :
+
+- https://manpages.debian.org/trixie/coreutils/groups.1.en.html[Page de manuel groups] +
+- https://manpages.debian.org/trixie/coreutils/id.1.en.html[Page de manuel id].
+
+**Question 14 : Quelle est la différence entre `su` et `sudo` ?** +
+`su` permet de changer d'utilisateur (souvent pour devenir root) et requiert le mot de passe de #l'utilisateur cible#. +
+ `sudo` permet d'exécuter une seule commande avec les privilèges d'un autre utilisateur (root en général), mais nécessite le mot de passe de #l'utilisateur courant#. +
+Source :
+
+- https://manpages.debian.org/trixie/sudo/sudo.8.en.html[Page de manuel sudo] +
+- https://manpages.debian.org/trixie/util-linux/su.1.en.html[Page de manuel su]
+
+**Question 15 : Quelle est la version du noyau Linux utilisé par votre VM ?** +
+ `uname -r`  : `6.12.73+deb13-amd64` +
+ Source : https://manpages.debian.org/trixie/coreutils/uname.1.en.html[Page de manuel uname]
+
+**Question 16 : Quelle est l'utilité des suppléments invités (Guest Additions) ?** +
+Ils optimisent la VM. Ils permettent notamment le redimensionnement dynamique de la fenêtre (ajustement de la résolution) et activent le presse-papiers partagé entre la machine hôte et la VM. +
+Source : https://wiki.debian.org/fr/VirtualBox#VirtualBox_Guest_Additions[Wiki Debian - Additions Invité VirtualBox]
+
+**Question 17 : À quoi sert la commande mount ?** +
+`mount` sert en général à attacher un système de fichiers (disque, clé USB) à l'arborescence du système (point de montage). Dans notre cas, elle a servi à rendre accessible le contenu du lecteur CD-ROM virtuel pour y exécuter le script d'installation. +
+Source : https://manpages.debian.org/trixie/util-linux/mount.8.en.html[Page de manuel mount]
+
+**Question 18 : Qu’est-ce que le Projet Debian ?** +
+C'est une association d'individus qui ont pour cause commune de créer un système d'exploitation libre. +
+Source : https://www.debian.org/intro[Site officiel du projet Debian]
+
+**Question 19 : D'où vient le nom Debian ?** +
+Le nom "Debian" a été imaginé par son créateur, Ian Murdock, en combinant le prénom de sa petite amie de l'époque (Debra) et le sien (Ian). +
+Source : https://www.debian.org/doc/manuals/project-history/intro.en.html[Historique du projet Debian]
+
+**Question 20 : Il existe 3 durées de prise en charge (support) de ces versions : la durée minimale, la durée en support long terme (LTS) et la durée en support long terme étendue (ELTS). Quelles sont les durées de ces prises en charge ?** +
+
+* _Minimale (Standard)_ : Environ 3 ans (1 an après la sortie de la version stable suivante).
+* _LTS (Long Term Support)_ : 5 ans au total.
+https://wiki.debian.org/LTS[Debian LTS]
+* _ELTS (Extended LTS)_ : Jusqu'à 10 ans (géré par une organisation tierce, Freexian).
+https://wiki.debian.org/LTS/Extended[Debian ELTS]
+
+**Question 21 : Pendant combien de temps les mises à jour de sécurité seront-elles fournies ?** +
+L'équipe de sécurité Debian fournit un support pour la version stable pendant environ 1 an après la sortie d'une nouvelle version stable. +
+Source : https://www.debian.org/doc/manuals/debian-handbook/sect.release-lifecycle.en.html#id-1.4.9.16[Debian Release Lifecycle]
+
+**Question 22 : Quelles sont les différentes versions de Debian activement maintenues ?** +
+Il y en a au minimum 3. Leurs noms génériques sont : _Stable_, _Testing_ (en test), et _Unstable_ (instable, surnommée _Sid_). On peut aussi compter _Oldstable_. +
+Source : https://www.debian.org/doc/manuals/debian-handbook/sect.release-lifecycle.en.html#id-1.4.9.16[Debian Release Lifecycle]
+
+**Question 23 : D'où proviennent les noms de code des versions Debian ?** +
+Tous les noms de code des versions Debian proviennent des personnages des films d'animation _Toy Story_ (ex. : Bullseye, Bookworm, Trixie). +
+Source : https://wiki.debian.org/ToyStory[Toy Story - Debian Wiki]
+
+**Question 24 : L'un des atouts de Debian fut le nombre d’architecture officiellement prises en charge. Combien et lesquelles sont prises en charge par la version Trixie ?** +
+La version Trixie de Debian supporte: _amd64_, _aarch64_, _armhf_, _powerpc_, _riscv64_ et _system z_. +
+Source : https://www.debian.org/releases/trixie/index.html[Debian Trixie Release Information]
+
+**Question 25 : Quel a été le premier nom de code utilisé ? Quand a-t-il été annoncé ? Quel était le numéro de version de cette distribution ?** +
+`Buzz` (Debian 1.1), annoncé le 17 juin 1996. +
+Source : https://www.debian.org/doc/manuals/project-history/releases.en.html[Debian Releases]
+
+**Question 26 : Quel est le dernier nom de code annoncé à ce jour ? Quand a-t-il été annoncé ? Quelle est la version de cette distribution ?** +
+La version 14 est `Forky` et la version 15 sera `Duke` annoncé le 22 Janvier 2025. +
+Source : https://lists.debian.org/debian-devel-announce/2025/01/msg00004.html[Annonce de Forky - Debian Mailing List]
+
+**Question 27 : Quelle est la différence entre `pkgsel/include` et `tasksel` dans un preseed ?** +
+`d-i pkgsel/include` permet de spécifier une liste de **paquets individuels** précis à installer (ex. : `git`, `curl`). +
+`tasksel tasksel/first` installe des **tâches entières** qui regroupent des centaines de paquets (ex. : `mate-desktop` ou `web-server`) +
+Source : https://wiki.debian.org/fr/tasksel[Wiki Debian - Tasksel]
+
+**Question 28 : Le fichier preseed pose-t-il un problème de sécurité ?** +
+Oui, le fichier preseed contient les mots de passe de `root` et de `user` en clair. En production, il faut protéger ce fichier en le stockant sur un serveur web interne sécurisé (HTTPS avec authentification), en restreignant drastiquement les droits de lecture du fichier physique ou en écrivant le hash uniquement +
+Source :
+
+- https://www.debian.org/releases/stable/amd64/apbs01.fr.html#preseed-security[Manuel Debian - Sécurité de la pré-configuration] +
+- https://www.debian.org/releases/stable/amd64/apbs04.en.html#preseed-account[Contents of the preconfiguration file]

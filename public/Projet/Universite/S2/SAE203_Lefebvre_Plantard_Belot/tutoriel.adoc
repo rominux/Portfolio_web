@@ -1,0 +1,99 @@
+= SAÉ 2.03 : Installation de services réseaux (rapport)
+Lefebvre Romain; Plantard Kylian; Belot Emilien
+:title-page:
+:title-logo-image: image:img/logo-univ.png[pdfwidth=3in,align=center]
+// Définit la date de génération ou de rendu du document
+:date: {docdate}
+// Intègre les images directement dans le fichier HTML final (autonome)
+:data-uri:
+// Active la Table des Matières (Table Of Contents)
+:toc:
+// Renomme le titre par défaut du sommaire (qui est en anglais) en français
+:toc-title: Table des matières
+// Définit la profondeur du sommaire (ici, il affichera jusqu'aux sous-titres de niveau 4)
+:toclevels: 4
+// Active la numérotation automatique des sections (1., 1.1., 1.2...)
+:sectnums:
+// Active les macros d'interface (permet d'utiliser kbd:[Ctrl+C] pour générer un visuel de touche de clavier)
+:experimental:
+// Utilise une police d'icônes (FontAwesome) au lieu de texte pour les blocs [NOTE], [WARNING], etc.
+:icons: font
+// Utilise la bibliothèque "rouge" pour la coloration syntaxique des blocs de code source
+:source-highlighter: rouge
+// Applique le thème "monokai" à "rouge" (donne un fond noir et un texte coloré au code source)
+:rouge-style: monokai
+// Indique à Asciidoctor que les fichiers de style se trouvent dans le sous-dossier "css"
+:stylesdir: css
+// Écrase le design par défaut d'Asciidoctor pour utiliser notre propre fichier CSS (pour le rendu HTML)
+:stylesheet: style.css
+
+include::semaine/semaine7_tutoriel.adoc[]
+
+<<<
+
+include::semaine/semaine8_tutoriel.adoc[]
+
+<<<
+
+include::semaine/semaine10_tutoriel.adoc[]
+
+<<<
+
+include::semaine/semaine11_tutoriel.adoc[]
+
+<<<
+
+include::semaine/semaine12_tutoriel.adoc[]
+
+<<<
+
+[glossary]
+== Glossaire
+
+[[glossaire-asciidoc]]AsciiDoc::
+  Langage de balisage léger utilisé pour la rédaction de documentation technique, offrant des fonctionnalités de mise en page plus puissantes et standardisées que le Markdown.
+
+[[glossaire-cicd]]CI/CD::
+  Continuous Integration / Continuous Deployment (Intégration et Livraison Continues). Pratiques de développement permettant d'automatiser la vérification (tests) et le déploiement du code à chaque nouvelle modification.
+
+[[glossaire-commit]]Commit::
+  Dans le contrôle de version (Git), un commit est un instantané (snapshot) qui enregistre l'état exact des fichiers d'un projet à un moment précis dans le temps.
+
+[[glossaire-envbureau]]Environnement de bureau (Desktop Environment)::
+  Ensemble de programmes (comme MATE ou GNOME) fournissant une interface graphique conviviale (fenêtres, icônes, barres de tâches) pour interagir avec le système d'exploitation Linux.
+
+[[glossaire-forge]]Forge logicielle::
+  Plateforme web collaborative (comme Forgejo, GitLab ou GitHub) permettant d'héberger des dépôts Git, de gérer les bugs (issues) et de faciliter la gestion de projet en équipe.
+
+[[glossaire-fork]]Fork (Embranchement)::
+  En développement logiciel, action de copier le code source d'un projet existant pour créer un nouveau projet indépendant. C'est ainsi que Forgejo a été créé à partir de Gitea.
+
+[[glossaire-merge]]Merge (Fusion)::
+  Sous Git, action consistant à combiner les modifications apportées dans une branche de développement avec une autre branche (généralement la branche principale `master` ou `main`).
+
+[[glossaire-nat]]NAT::
+  Network Address Translation. Mécanisme réseau permettant à la machine virtuelle de partager l'adresse IP de la machine hôte pour accéder à Internet tout en la protégeant.
+
+[[glossaire-nodejs]]Node.js::
+  Environnement d'exécution JavaScript côté serveur.
+
+[[glossaire-npm]]npm::
+  Node Package Manager. Le gestionnaire de paquets officiel pour l'écosystème Node.js.
+
+[[glossaire-portforwarding]]Redirection de port (Port Forwarding)::
+  Technique réseau configurée dans VirtualBox permettant de rediriger le trafic d'un port spécifique de la machine physique (ex: 2222 ou 3000) vers un port précis de la machine virtuelle isolée en NAT.
+
+[[glossaire-preseed]]Preseeding (ou Preseed)::
+  Méthode permettant d'automatiser l'installation d'un système d'exploitation Debian en pré-remplissant un fichier de configuration (comme `preseed.cfg`) avec les réponses attendues par l'installateur.
+
+[[glossaire-reverseproxy]]Reverse Proxy (Proxy inverse)::
+  Serveur intermédiaire placé devant des serveurs web internes. Il intercepte les requêtes des clients (souvent sur les ports standard 80 ou 443) et les redirige de manière sécurisée vers l'application cible (ex: Forgejo sur le port 3000).
+
+[[glossaire-sqlite]]SQLite::
+  Moteur de base de données relationnelle extrêmement léger. Contrairement à PostgreSQL ou MySQL, il ne nécessite pas de processus serveur indépendant et stocke toutes ses données dans un simple fichier local.
+
+[[glossaire-ssh]]SSH::
+  Secure Shell. Protocole cryptographique permettant de sécuriser les communications (notamment l'accès distant et l'authentification Git) sur un réseau non sécurisé.
+
+[[glossaire-systemd]]Systemd::
+  Gestionnaire de système et de services standard des distributions Linux modernes (comme Debian). Il gère le démarrage, l'arrêt et le redémarrage automatique des processus en arrière-plan (démons).
