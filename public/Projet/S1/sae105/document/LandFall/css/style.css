@@ -1,0 +1,312 @@
+/* =========================================
+   1. PAGE D'ACCUEIL (Home)
+   ========================================= */
+.container-home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: var(--header-height);
+}
+
+.hero-section {
+    text-align: center;
+    padding: 40px 20px;
+    background: radial-gradient(circle at center, #16324a 0%, transparent 70%);
+    margin-bottom: 40px;
+}
+.hero-section h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--accent); }
+.hero-section p { color: var(--muted); font-size: 1.2rem; margin-bottom: 30px; }
+
+.search-bar-home {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(11, 22, 32, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--accent);
+}
+.search-bar-home input, .search-bar-home select {
+    padding: 12px;
+    background: #050d17;
+    border: 1px solid var(--border-color);
+    color: white;
+    border-radius: 6px;
+    flex: 1;
+    min-width: 140px;
+}
+
+/* Sections Grid (Accueil) */
+.main-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.info-box {
+    background: rgba(255,255,255,0.03);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 15px;
+}
+.info-box h3 { color: var(--accent); margin-bottom: 10px; font-size: 1.1rem; }
+.info-box p { color: var(--muted); line-height: 1.5; }
+
+.content-box.electric-car img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; }
+.content-box.large-image {
+    grid-column: 3; grid-row: 1 / span 2;
+    background-color: #111f30; /* Fallback couleur */
+    background-image: url('../img/covoiturage-illustration.jpg');
+    background-size: cover; border-radius: 8px; min-height: 300px;
+}
+
+/* Section Trajets Populaires */
+.popular-trips { text-align: center; margin: 40px 0; }
+.trip-grid { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+.trip-card {
+    background: var(--bg-card);
+    padding: 15px 25px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-weight: bold;
+    color: var(--accent);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.trip-card:hover { background: var(--accent); color: #fff; }
+
+
+/* =========================================
+   2. AUTHENTIFICATION
+   ========================================= */
+.auth-main {
+    display: flex; align-items: center; justify-content: center;
+    min-height: calc(100vh - 140px);
+}
+.auth-container {
+    width: 100%; max-width: 420px;
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #193045;
+    text-align: center;
+}
+.auth-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.close-btn { font-size: 1.5rem; color: var(--muted); }
+
+.form-stacked { display: flex; flex-direction: column; gap: 15px; text-align: left; }
+.form-stacked label { color: var(--muted); font-size: 0.9rem; margin-bottom: 5px; display: block; }
+.form-stacked input, .form-stacked select, .form-stacked textarea {
+    width: 100%; padding: 10px;
+    background: #04202a; border: 1px solid #264756;
+    color: #fff; border-radius: 6px;
+}
+.form-stacked button {
+    background: var(--accent); color: white; padding: 12px;
+    border: none; border-radius: 6px; font-weight: bold; cursor: pointer;
+}
+.form-links { margin-top: 15px; font-size: 0.9rem; }
+.form-links a { display: block; margin-top: 5px; }
+
+/* Groupe texte/lien (Connexion) */
+.text-link-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    color: #a9bfcf;
+}
+
+
+/* =========================================
+   3. MESSAGERIE & TABLEAU DE BORD
+   ========================================= */
+.dashboard-hero {
+    background: #111f30; padding: 30px; border-radius: 12px; border: 1px solid #16324a;
+    text-align: center; margin-bottom: 30px;
+}
+.dashboard-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
+}
+.dashboard-card {
+    background: #0b1620; padding: 25px; border-radius: 8px; border: 1px solid #16324a;
+    text-align: center; transition: transform 0.2s; display: block;
+}
+.dashboard-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+.dashboard-card span { font-size: 2rem; display: block; margin-bottom: 10px; }
+.dashboard-card h3 { color: #fff; font-size: 1.1rem; margin: 0; }
+
+/* Messagerie Layout */
+.messaging-layout {
+    display: flex; height: 600px; border: 1px solid #16324a; border-radius: 8px; background: #0b1620; overflow: hidden;
+}
+.messaging-layout input[type="radio"] { display: none; }
+.contacts-list { width: 280px; background: #111f30; border-right: 1px solid #16324a; overflow-y: auto; }
+.contact-label { padding: 15px; border-bottom: 1px solid #16324a; cursor: pointer; display: block; color: #a9bfcf; }
+.contact-label:hover { background: #16324a; color: #fff; }
+.contact-label strong { display: block; color: #fff; margin-bottom: 4px; }
+.messages-display { flex: 1; position: relative; background: #0b1620; }
+.conversation {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0; padding: 20px;
+    overflow-y: auto; display: none; flex-direction: column; gap: 15px;
+}
+.message { padding: 10px 15px; border-radius: 8px; max-width: 70%; line-height: 1.4; }
+.message.received { background: #16324a; align-self: flex-start; color: #ddd; }
+.message.sent { background: #2a8cff; align-self: flex-end; color: #fff; }
+
+/* Logique d'affichage messagerie */
+#contact1:checked ~ .messages-display #conv1,
+#contact2:checked ~ .messages-display #conv2,
+#contact3:checked ~ .messages-display #conv3 { display: flex; }
+#contact1:checked ~ .contacts-list label[for="contact1"],
+#contact2:checked ~ .contacts-list label[for="contact2"],
+#contact3:checked ~ .contacts-list label[for="contact3"] { background: #2a8cff; color: white; }
+
+
+/* =========================================
+   4. PUBLIER (STYLE TABLEAU EN GRID)
+   ========================================= */
+.publish-title {
+    text-align: center; border: 2px solid #16324a; border-radius: 8px; padding: 20px;
+    margin: 0 auto 40px auto; max-width: 600px; background: #111f30; font-size: 1.8rem; color: #a9d6ff;
+}
+.publish-form { width: 100%; max-width: 800px; margin: 0 auto; }
+
+/* NOUVEAU STYLE : TABLE-LIKE GRID */
+.publish-grid-table {
+    display: grid;
+    grid-template-columns: 1.5fr 2.5fr; /* 2 colonnes: Info, Réponse */
+    gap: 0;
+    background: #111f30;
+    border: 1px solid #16324a;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+/* Entêtes du "tableau" */
+.publish-header {
+    background: #16324a;
+    color: #a9d6ff;
+    padding: 15px;
+    font-weight: bold;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+/* Cellules */
+.publish-cell {
+    padding: 15px;
+    border-bottom: 1px solid #16324a;
+    color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+}
+
+.publish-cell label { width: 100%; margin: 0; cursor: pointer; }
+.publish-cell input:not([type="radio"]) {
+    width: 100%; padding: 10px;
+    background: #050d17; border: 1px solid #16324a;
+    color: white; border-radius: 4px;
+}
+
+/* Fusion de colonnes (équivalent colspan) */
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+
+/* Responsive Mobile : On passe en 1 colonne verticale */
+@media (max-width: 768px) {
+    .publish-grid-table { grid-template-columns: 1fr; }
+    .publish-header { display: none; /* On cache les entêtes */ }
+    .publish-cell { border-bottom: 1px solid #264756; flex-direction: column; align-items: flex-start; gap: 5px; }
+    .col-span-2, .col-span-3 { grid-column: auto; }
+}
+
+.frequency-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; width: 100%; }
+.frequency-buttons label { flex: 1; min-width: 100px; }
+.frequency-buttons input[type="radio"] { display: none; }
+.frequency-buttons span {
+    display: block; padding: 10px; background: #111f30; border: 1px solid #16324a;
+    color: #f0f0f0; text-align: center; border-radius: 6px; cursor: pointer; font-weight: 600;
+}
+.frequency-buttons input[type="radio"]:checked + span { background: #2a8cff; color: white; border-color: #2a8cff; }
+
+.submit-area { text-align: center; margin-bottom: 40px; }
+.btn-publish-big {
+    padding: 15px 40px; font-size: 1.2rem; background: #2a8cff; border: none;
+    border-radius: 6px; color: white; cursor: pointer; font-weight: bold; transition: 0.3s;
+}
+.btn-publish-big:hover { background: #1a7cff; transform: scale(1.02); }
+
+
+/* =========================================
+   5. RECHERCHE & RÉSULTATS
+   ========================================= */
+.search-recap {
+    background: var(--bg-card); padding: 20px; border-radius: 8px;
+    display: flex; gap: 10px; flex-wrap: wrap; border: 1px solid var(--border-color); margin-bottom: 30px;
+}
+.result-card {
+    background: var(--bg-card); padding: 20px; margin-bottom: 15px;
+    border: 1px solid var(--border-color); border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.result-card:hover { border-color: var(--accent); }
+.result-time { font-size: 1.2rem; font-weight: bold; color: #fff; }
+.result-route { color: var(--muted); margin-left: 15px; }
+.result-price { font-size: 1.4rem; font-weight: bold; color: var(--accent); }
+
+
+/* =========================================
+   6. LOCATION (Images ajustées)
+   ========================================= */
+.vehicle-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; margin-top: 30px;
+}
+.vehicle-card {
+    background: var(--bg-card); border: 1px solid var(--border-color);
+    border-radius: 8px; overflow: hidden; transition: transform 0.2s;
+    display: flex; flex-direction: column;
+}
+.vehicle-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+/* AJUSTEMENT IMAGES VÉHICULES */
+.vehicle-img { 
+    width: 100%; 
+    height: 160px; /* Réduit pour rentrer dans le cadre */
+    object-fit: contain; /* L'image entière est visible sans être coupée */
+    background: #000; /* Fond noir pour combler les vides */
+    padding: 10px; /* Un peu d'espace */
+}
+
+.vehicle-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.vehicle-price { color: var(--accent); font-size: 1.2rem; font-weight: bold; margin-top: auto; padding-top: 10px; display: block; }
+
+.content-page { background: var(--bg-card); padding: 40px; border-radius: 8px; border: 1px solid var(--border-color); line-height: 1.6; }
+.content-page h2 { color: #fff; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-top: 30px; }
+
+/* Message succès */
+.success-wrapper { display: flex; justify-content: center; align-items: center; min-height: 60vh; }
+.success-box {
+    background: #111f30; border: 2px solid #2a8cff; padding: 40px;
+    border-radius: 10px; text-align: center; max-width: 500px;
+}
+.success-box h2 { color: #2a8cff; margin-bottom: 20px; }
+.success-box p { color: #f0f0f0; margin-bottom: 30px; }
+
+/* Responsive Général */
+@media (max-width: 800px) {
+    .main-content-grid { grid-template-columns: 1fr; }
+    .content-box.large-image { grid-column: auto; grid-row: auto; }
+    .messaging-layout { flex-direction: column; height: auto; }
+    .contacts-list { width: 100%; max-height: 200px; }
+    .result-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+}

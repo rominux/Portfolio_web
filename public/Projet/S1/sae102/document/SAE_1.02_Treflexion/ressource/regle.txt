@@ -1,0 +1,64 @@
+================================================================================= 
+  ____  _____ ____ _     _____ ____     ____  _   _       _ _____ _   _           
+ |  _ \| ____/ ___| |   | ____/ ___|   |  _ \| | | |     | | ____| | | |          
+ | |_) |  _|| |   | |   |  _| \___ \   | | | | | | |  _  | |  _| | | | |          
+ |  _ <| |__| |_| | |___| |___ ___) |  | |_| | |_| | | |_| | |___| |_| |          
+ |_| \_\_____\____|_____|_____|____/   |____/_\___/   \___/|_____|\___/           
+                                                                                  
+================================================================================= 
+                                                                                  
+[1] BUT DU JEU                                                                    
+    Remplissez la grille 5x5 pour créer 10 mains de poker (5 lignes, 5 colonnes)  
+    SCORE TOTAL = Somme des scores des 10 mains.                                  
+                                                                                  
+§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+                                                                                  
+[2] DÉROULEMENT                                                                   
+    1. PIOCHE   : Une carte apparaît.                                             
+    2. ACTION   :                                                                 
+       [A] PLACER   -> Choisir Ligne (1-5) et Colonne (1-5).                      
+       [B] JOKER    -> Taper 'J' pour tenter de défausser la carte.               
+                                                                                  
+    /!\ ATTENTION : Une carte posée ne peut plus être déplacée.                   
+                                                                                  
+§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+                                                                                  
+[3] LES JOKERS (Stock: 15)                                                        
+    Taper 'J' lance un QUIZ (Maths/Logique/Casino).                               
+                                                                                  
+    (O) Bonne réponse  : Carte défaussée sans pénalité.                           
+    (X) Mauvaise réponse : Joker perdu + OBLIGATION de jouer la carte.            
+                                                                                  
+§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+                                                                                  
+[4] SYSTÈME DE SCORE                                                              
+    FORMULE :  [ (SOMME DES JETONS) + BASE ]  x  MULTIPLICATEUR                   
+                                                                                  
+    A. VALEURS (JETONS)              B. BARÈME DES MAINS                          
+    -------------------              ---------------------------------------      
+    2 à 9    : Valeur faciale        | MAIN               |  BASE  | MULT  |      
+    10,V,D,R : 10 Jetons             |--------------------|--------|-------|      
+    As       : 11 Jetons             | Quinte Flush Roy.  |   100  |  x8   |      
+                                     | Quinte Flush       |   100  |  x8   |      
+    * Seules les cartes              | Carré (4 of a Kind)|    60  |  x7   |      
+      actives comptent !             | Full House         |    40  |  x4   |      
+                                     | Couleur (Flush)    |    35  |  x4   |      
+                                     | Suite (Straight)   |    30  |  x4   |      
+                                     | Brelan             |    30  |  x3   |      
+                                     | Double Paire       |    20  |  x2   |      
+                                     | Paire              |    10  |  x2   |      
+                                     | Carte Haute        |     5  |  x1   |      
+                                     ---------------------------------------      
+                                                                                  
+§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+                                                                                  
+[5] COMMANDES                                                                     
+    > LIGNE   : [1] à [5]                                                         
+    > COLONNE : [1] à [5]                                                         
+    > ACTION  : [J] pour Joker / Défausse                                         
+                                                                                  
+[6] SEED (GRAINE)                                                                 
+    Chaque partie a un code unique (ex: A1B2).                                    
+    Notez-le pour rejouer la même partie plus tard !                              
+                                                                                  
+==================================================================================

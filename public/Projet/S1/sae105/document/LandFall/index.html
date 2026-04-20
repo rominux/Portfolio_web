@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandRide - Accueil</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/landfall_logo.webp">
+</head>
+<body>
+    <header>
+        <div class="left">
+            <div class="brand">
+                <img src="img/landfall_logo.webp" alt="Logo" class="logo">
+            </div>
+            <nav>
+                <ul class="nav-stack">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="https://landfall.se/">Landfall</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="actions">
+            <a href="compte/connexion.html" class="btn small">Connexion / Inscription</a>
+            <a href="compte/publier.html" class="btn primary">Publier un trajet</a>
+        </div>
+    </header>
+
+    <div class="container-home">
+        <main>
+            <section class="hero-section">
+                <h1>LandRide</h1>
+                <p>Économiser en respectant la planète (et la physique) !</p>
+                
+                <form action="recherche.html" method="get" class="search-bar-home">
+                    <input type="text" name="depart" placeholder="Départ (ex: Lille)" required>
+                    <input type="text" name="arrivee" placeholder="Arrivée (ex: Paris)" required>
+                    <input type="date" name="date">
+                    <select name="passagers">
+                        <option value="1">1 Passager</option>
+                        <option value="2">2 Passagers</option>
+                        <option value="3">3 Passagers</option>
+                    </select>
+                    <button type="submit" class="btn primary">Rechercher</button>
+                </form>
+            </section>
+
+            <div class="main-content-grid">
+                <div class="col-left">
+                    <div class="info-box">
+                        <h3>VOYAGEZ À PETITS PRIX</h3>
+                        <p>Quelle que soit votre destination, il y a un covoiturage pour vous y amener à moindre coût.</p>
+                    </div>
+                    <div class="info-box">
+                        <h3>TOUJOURS PROCHE</h3>
+                        <p>Quand c'est à côté, c'est encore mieux. Fini les détours.</p>
+                    </div>
+                </div>
+
+                <div class="col-center">
+                    <div class="content-box electric-car">
+                        <img src="img/voiture-e-lectrique.jpg" alt="Voiture électrique">
+                    </div>
+                    <div class="info-box">
+                        <h3>FIABLE ET SIMPLE</h3>
+                        <p>Nous vérifions les avis et profils. Application simple et sécurisée.</p>
+                    </div>
+                </div>
+
+                <div class="content-box large-image"></div>
+            </div>
+
+            <div class="info-box full-width">
+                <h3>POURQUOI CHOISIR LANDRIDE ?</h3>
+                <p>LandRide facilite vos déplacements quotidiens et occasionnels grâce à :</p>
+                <ul style="padding-left:20px; margin-top:10px; list-style:disc; color: #a9bfcf;">
+                    <li>Des trajets vérifiés par la communauté</li>
+                    <li>Des tarifs transparents</li>
+                    <li>Des options éco‑responsables</li>
+                </ul>
+                <br>
+                <a href="a-propos.html" class="btn secondary">En savoir plus</a>
+            </div>
+
+            <section class="popular-trips">
+                <h2>NOS TRAJETS POPULAIRES</h2>
+                <div class="trip-grid">
+                    <a href="recherche.html?q=lille-paris" class="trip-card">LILLE ➔ PARIS</a>
+                    <a href="recherche.html?q=paris-lille" class="trip-card">PARIS ➔ LILLE</a>
+                    <a href="recherche.html?q=grenoble-lyon" class="trip-card">GRENOBLE ➔ LYON</a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <ul class="footer-list">
+            <li>LandRide - Mobilité Landfall</li>
+            <li><a href="legal/contact.html">Contact Admin</a></li>
+            <li><a href="legal/cgu.html">CGU</a></li>
+            <li><a href="legal/mentions.html">Mentions Légales</a></li>
+            <li><a href="legal/rgpd.html">RGPD</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

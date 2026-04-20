@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - LandRide</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../img/landfall_logo.webp">
+</head>
+<body>
+    <header>
+        <div class="left">
+            <div class="brand"><img src="../img/landfall_logo.webp" alt="Logo" class="logo"></div>
+            <nav class="nav-stack">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="https://landfall.se/">Landfall</a></li>
+            </nav>
+        </div>
+        <div class="actions">
+            <a href="connexion.html" class="btn small">Connexion</a>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-container">
+            <h2>Créer un compte</h2>
+            <form action="inscription_ok.html" class="form-stacked">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" required>
+                
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" required>
+                
+                <button type="submit">S'inscrire</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <ul class="footer-list">
+            <li>LandRide - Mobilité Landfall</li>
+            <li><a href="../legal/contact.html">Contact Admin</a></li>
+            <li><a href="../legal/cgu.html">CGU</a></li>
+            <li><a href="../legal/mentions.html">Mentions Légales</a></li>
+            <li><a href="../legal/rgpd.html">RGPD</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAÉ 1.04 – Introduction aux BDD | Romain LEFEBVRE</title>
+    <meta name="description"
+        content="Fiche portfolio SAÉ 1.04 — Modélisation MCD et base de données relationnelle pour une exploitation viticole.">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a href="../../../index.html" class="nav-brand"><span class="dot"></span>R. Lefebvre</a>
+            <div class="nav-links">
+                <a href="../../../index.html#s1" class="active">IUT S1</a>
+                <a href="../../S2/index.html">IUT S2</a>
+                <a href="../../autre/index.html">Projets perso</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sae-page">
+
+        <a href="../../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+
+        <div class="sae-hero">
+            <div class="sae-hero-content">
+                <span class="sae-num-lg">SAÉ 1.04</span>
+                <h1>Introduction aux Bases de Données</h1>
+                <p>Gérer des données de l'information — Modélisation conceptuelle (MCD) et implémentation d'une base de
+                    données relationnelle pour la gestion d'une exploitation viticole.</p>
+            </div>
+        </div>
+
+        <figure class="sae-visual">
+            <img src="img/mcd.png" alt="Modèle Conceptuel de Données (MCD) du domaine viticole réalisé avec PowerAMC">
+            <figcaption>Modèle Conceptuel de Données (MCD) du domaine viticole — entités, associations et cardinalités
+                conçus avec PowerAMC, puis dérivés en Modèle Logique Relationnel (MLR) et implémentés dans Microsoft
+                Access (Lefebvre &amp; Morin — Groupe B).</figcaption>
+        </figure>
+
+        <div class="content-block">
+            <h2><i class="fas fa-info-circle"></i> Présentation du projet</h2>
+            <p>La SAÉ 1.04 introduit la compétence de gestion des données, centrale dans tout système d'information
+                moderne. Le contexte applicatif est un domaine viticole : à partir d'un cahier des charges fourni, il
+                s'agit de modéliser puis d'implémenter une base de données capable de gérer l'ensemble de ses
+                informations opérationnelles — parcelles, cépages, étapes de vinification, gestion des stocks, ventes et
+                personnel.</p>
+            <p>La première étape du projet est analytique : identifier toutes les entités du domaine (ce qui existe
+                concrètement dans l'exploitation), toutes les associations (ce qui les relie), leurs attributs
+                respectifs et les cardinalités de chaque relation. Ce travail rigoureux aboutit au Modèle Conceptuel de
+                Données (MCD), réalisé avec le logiciel PowerAMC. Chaque choix de cardinalité doit être justifié par des
+                exemples concrets issus du cahier des charges.</p>
+            <p>La seconde étape est l'implémentation : dériver le MCD en Modèle Logique Relationnel (MLR), c'est-à-dire
+                définir les tables relationnelles, leurs clés primaires et leurs clés étrangères, puis créer la base
+                effective sous Microsoft Access. J'ai ensuite rédigé des requêtes SQL pour répondre à des questions
+                métier précises (production par cépage, stock disponible, chiffre d'affaires par client) et créé des
+                formulaires utilisateurs facilitant la saisie des données.</p>
+            <p>Ce projet a été réalisé en binôme avec Baptiste MORIN (groupe B). La répartition des tâches a suivi une
+                logique de complémentarité : analyse conjointe du cahier des charges, modélisation séparée sur des
+                sous-domaines puis fusion et révision commune du MCD. L'implémentation Access a ensuite été réalisée
+                ensemble pour garantir la cohérence des relations entre tables.</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-block">
+                <h3><i class="fas fa-laptop-code"></i> Compétences techniques &amp; savoir-faire</h3>
+                <ul>
+                    <li>Analyse d'un cahier des charges et extraction des entités, associations et attributs</li>
+                    <li>Modélisation d'un MCD avec PowerAMC (cardinalités, héritage, attributs composites)</li>
+                    <li>Dérivation du MCD en Modèle Logique Relationnel (MLR) avec normalisation</li>
+                    <li>Implémentation relationnelle sous Microsoft Access (tables, clés, relations d'intégrité)</li>
+                    <li>Requêtes SQL : SELECT, JOIN, GROUP BY, fonctions d'agrégation (SUM, COUNT, AVG)</li>
+                    <li>Création de formulaires Access pour la saisie et la consultation utilisateur</li>
+                </ul>
+            </div>
+            <div class="info-block">
+                <h3><i class="fas fa-users"></i> Savoir-être requis</h3>
+                <ul>
+                    <li><strong>Analyse :</strong> décomposer un domaine métier complexe en structures de données
+                        précises et cohérentes</li>
+                    <li><strong>Précision :</strong> une erreur de cardinalité dans le MCD engendre une base incorrecte
+                        — chaque choix doit être justifié</li>
+                    <li><strong>Travail en binôme :</strong> répartir l'analyse, fusionner les modèles et valider
+                        ensemble la cohérence globale</li>
+                    <li><strong>Recul critique :</strong> simuler des scénarios d'utilisation réels pour valider le
+                        modèle avant implémentation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2><i class="fas fa-folder-open"></i> Livrables téléchargeables</h2>
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fas fa-file-pdf"></i></div>
+                <div class="deliverable-info">
+                    <strong>Rapport complet (MCD, MLR, SQL)</strong>
+                    <a href="document/Sujet2_Lefebvre_Morin_GroupeB.pdf" download>Télécharger le rapport PDF <i
+                            class="fas fa-download"></i></a>
+                </div>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fas fa-database"></i></div>
+                <div class="deliverable-info">
+                    <strong>Base de données Microsoft Access</strong>
+                    <span>Fichier .accdb avec tables, relations, formulaires et requêtes — disponible sur demande</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2><i class="fas fa-pen-alt"></i> Bilan personnel</h2>
+            <p>La SAÉ 1.04 m'a révélé un aspect de l'informatique que je méconnaissais : la modélisation et la gestion
+                des données. Avant ce projet, je n'avais aucune idée de ce que représentait vraiment une base de données
+                relationnelle ni pourquoi la phase de modélisation était si importante. Cette SAÉ a répondu à ces deux
+                questions de façon concrète et durable.</p>
+            <p>La partie MCD a été la plus exigeante intellectuellement. Choisir les bonnes cardinalités n'est pas
+                trivial : chaque relation doit être confrontée à des exemples réels pour valider son sens. Nous avons
+                révisé notre modèle plusieurs fois après avoir simulé des scénarios d'usage que nous n'avions pas
+                anticipés initialement. Ce processus itératif m'a appris la valeur de la phase d'analyse en amont de
+                tout développement.</p>
+            <p>La rédaction de requêtes SQL a été une révélation. L'approche déclarative — énoncer ce qu'on veut obtenir
+                plutôt que comment l'obtenir — est très différente de la programmation procédurale en Java. Construire
+                une requête avec des jointures multiples et des agrégations pour extraire exactement l'information
+                voulue procure une vraie satisfaction intellectuelle.</p>
+            <p>Depuis cette SAÉ, je réfléchis systématiquement en termes de modèle de données dès que j'aborde un
+                nouveau problème applicatif. C'est un réflexe que j'estime fondamental pour tout développeur souhaitant
+                concevoir des systèmes robustes et maintenables.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <strong>Romain LEFEBVRE</strong> — Portfolio Universitaire</p>
+    </footer>
+</body>
+
+</html>

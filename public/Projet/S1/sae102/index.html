@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAÉ 1.02 – Tréflexion | Romain LEFEBVRE</title>
+    <meta name="description"
+        content="Fiche portfolio SAÉ 1.02 — Tréflexion. Conception et développement d'un jeu de stratégie en Java avec interface ASCII Art et mécaniques de poker.">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet" href="css/sae102.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a href="../../../index.html" class="nav-brand"><span class="dot"></span>R. Lefebvre</a>
+            <div class="nav-links">
+                <a href="../../../index.html#s1" class="active">IUT S1</a>
+                <a href="../../S2/index.html">IUT S2</a>
+                <a href="../../autre/index.html">Projets perso</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sae-page">
+
+        <a href="../../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+
+        <div class="sae-hero">
+            <div class="sae-hero-content">
+                <span class="sae-num-lg">SAÉ 1.01 / 1.02</span>
+                <h1>Tréflexion</h1>
+                <p>Optimiser des applications informatiques — Conception et développement complet d'un jeu de stratégie
+                    ludo-pédagogique en Java, réalisé en binôme avec Baptiste MORIN.</p>
+            </div>
+        </div>
+
+        <figure class="sae-visual">
+            <div class="sae-visual-gallery">
+                <img src="img/Acceuil.png" alt="Écran d'accueil de Tréflexion — menu principal avec saisie de la Seed">
+                <img src="img/Millieu_de_partie.png"
+                    alt="Milieu de partie — grille 5×5 avec cartes posées et score en cours">
+            </div>
+            <figcaption><strong>Gauche :</strong> Menu d'accueil — saisie de la Seed (graine). <strong>Droite :</strong>
+                Grille 5×5 en cours de partie avec combinaisons calculées en temps réel.</figcaption>
+        </figure>
+
+        <div class="content-block">
+            <h2><i class="fas fa-info-circle"></i> Présentation du projet</h2>
+            <p>Tréflexion est un jeu de réflexion stratégique développé en Java (environnement iJava) dans le cadre
+                conjoint des SAÉ 1.01 et 1.02. Le principe est inspiré du poker : le joueur doit placer 25 cartes, une
+                par une, sur une grille de 5 colonnes et 5 lignes, en cherchant à former les meilleures combinaisons
+                possibles (paires, brelans, suites, couleurs, full house, carré, quinte flush) sur chacune des 10
+                rangées évaluées à la fin de la partie.</p>
+            <p>La contrainte centrale du jeu est son irréversibilité : une carte posée ne peut jamais être déplacée.
+                Cette règle oblige le joueur à anticiper sur le long terme plutôt que de jouer de façon purement
+                opportuniste. Un système de « Jokers pédagogiques » enrichit l'expérience : en répondant correctement à
+                une question de culture générale ou de mathématiques — chargée dynamiquement depuis un fichier CSV
+                externe — le joueur peut défausser la carte courante et piocher la suivante sans la poser.</p>
+            <p>Techniquement, l'interface est entièrement réalisée en ASCII Art avec des templates et un positionnement
+                précis du curseur dans le terminal, reproduisant fidèlement les symboles et valeurs des cartes à jouer
+                (♠ ♥ ♦ ♣). Chaque partie est identifiée par un Seed numérique unique permettant de rejouer exactement la
+                même distribution. Le code source est couvert par un script de tests automatisés (<code>test.sh</code>)
+                validant les fonctions de détection de combinaisons.</p>
+            <p>Ce projet a été réalisé en binôme avec Baptiste MORIN via un dépôt Git commun. La répartition des tâches
+                a suivi une logique de complémentarité : Baptiste sur la logique de scoring et la détection des mains de
+                poker, moi sur l'interface ASCII Art, le système de Seed et les Jokers pédagogiques. Des réunions
+                hebdomadaires assuraient la cohérence de l'ensemble et l'intégration continue des modules.</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-block">
+                <h3><i class="fas fa-laptop-code"></i> Compétences techniques &amp; savoir-faire</h3>
+                <ul>
+                    <li>Conception de l'architecture logicielle d'un jeu complet (modèle, logique, affichage)</li>
+                    <li>Algorithmique avancée : détection de toutes les mains de poker (Paire → Quinte Flush Royale)
+                    </li>
+                    <li>Lecture et parsing d'un fichier CSV externe pour les questions Joker</li>
+                    <li>Interface ASCII Art avec positionnement curseur et templates de cartes (♠ ♥ ♦ ♣)</li>
+                    <li>Système de Seed pour la reproductibilité des parties</li>
+                    <li>Travail en binôme avec Git : versioning et gestion des conflits</li>
+                    <li>Tests unitaires automatisés via script Bash</li>
+                </ul>
+            </div>
+            <div class="info-block">
+                <h3><i class="fas fa-users"></i> Savoir-être requis</h3>
+                <ul>
+                    <li><strong>Travail en équipe :</strong> coordination quotidienne et partage des décisions
+                        d'architecture</li>
+                    <li><strong>Communication :</strong> écrire un code lisible, comprendre le code de l'autre</li>
+                    <li><strong>Organisation :</strong> planifier les étapes et respecter les délais académiques</li>
+                    <li><strong>Créativité :</strong> concevoir l'interface ASCII Art et les mécaniques de Jokers</li>
+                    <li><strong>Persévérance :</strong> débogage itératif des algorithmes de détection de poker</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2><i class="fas fa-folder-open"></i> Livrables &amp; ressources</h2>
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fas fa-file-code"></i></div>
+                <div class="deliverable-info">
+                    <strong>src/Treflexion.java</strong>
+                    <span>Code source principal — logique du jeu, affichage ASCII Art et gestion des Jokers</span>
+                </div>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fas fa-file-csv"></i></div>
+                <div class="deliverable-info">
+                    <strong>ressource/questions.csv</strong>
+                    <span>Base de questions pédagogiques chargées dynamiquement pour le système de Jokers</span>
+                </div>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fas fa-terminal"></i></div>
+                <div class="deliverable-info">
+                    <strong>compile.sh / run.sh / test.sh</strong>
+                    <span>Scripts Bash de compilation, d'exécution et de tests unitaires automatisés</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2><i class="fas fa-trophy"></i> Système de score</h2>
+            <p class="score-desc">Formule : <strong>(Base + Main) × Multiplicateur</strong> — évalué sur les 10 rangées
+                (5 lignes + 5 colonnes) :</p>
+            <div class="score-grid">
+                <table class="sommaire-table">
+                    <thead>
+                        <tr>
+                            <th>Combinaison</th>
+                            <th>Base</th>
+                            <th>×</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Quinte Flush Royale</td>
+                            <td>100</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>Quinte Flush</td>
+                            <td>100</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>Carré</td>
+                            <td>60</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>Full House</td>
+                            <td>40</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Couleur (Flush)</td>
+                            <td>35</td>
+                            <td>4</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="sommaire-table">
+                    <thead>
+                        <tr>
+                            <th>Combinaison</th>
+                            <th>Base</th>
+                            <th>×</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Suite (Straight)</td>
+                            <td>30</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Brelan</td>
+                            <td>30</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Double Paire</td>
+                            <td>20</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Paire</td>
+                            <td>10</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Carte Haute</td>
+                            <td>5</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2><i class="fas fa-pen-alt"></i> Bilan personnel</h2>
+            <p>Tréflexion est le projet du Semestre 1 qui m'a le plus marqué, tant par sa complexité technique que par
+                sa richesse humaine. Sur le plan algorithmique, implémenter la détection de toutes les mains de poker —
+                de la simple paire à la quinte flush royale — a représenté un véritable défi : chaque combinaison doit
+                être formalisée en critères précis, testés exhaustivement pour éviter faux positifs et mains non
+                détectées. Plusieurs versions ont été nécessaires avant d'obtenir un moteur de scoring fiable et
+                cohérent.</p>
+            <p>Travailler en binôme avec Baptiste a été une expérience formatrice à part entière. J'ai compris en
+                pratique pourquoi les conventions de code et les commentaires ne sont pas des détails accessoires : lire
+                le code de quelqu'un d'autre sans explication verbale révèle immédiatement les zones d'ombre. Nous avons
+                adopté assez tôt une discipline de nommage commune et des fonctions à responsabilité unique, ce qui a
+                facilité l'intégration de nos modules respectifs.</p>
+            <p>L'idée des Jokers pédagogiques est celle dont je suis le plus fier. Elle incarne la mission d'un IUT :
+                créer des systèmes qui allient utilité technique et valeur éducative. Voir des camarades jouer à
+                Tréflexion et chercher à maximiser leur score a été une source de fierté et de motivation pour la suite
+                du cursus.</p>
+            <p>Si c'était à refaire, je consacrerais davantage de temps à la phase de conception (diagramme des classes,
+                contrat de chaque fonction) avant d'écrire la première ligne de code. Nous avons dû refactoriser
+                plusieurs parties faute d'une architecture initiale suffisamment modulaire. C'est une leçon que
+                j'applique systématiquement depuis.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <strong>Romain LEFEBVRE</strong> — Portfolio Universitaire</p>
+    </footer>
+</body>
+
+</html>

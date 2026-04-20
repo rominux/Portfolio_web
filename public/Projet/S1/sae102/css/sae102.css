@@ -1,0 +1,18 @@
+/* SAÉ 1.02 — Tréflexion : styles spécifiques */
+
+/* Grille 2 colonnes pour le tableau de score */
+.score-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.score-desc {
+    margin-bottom: 14px;
+}
+
+@media (max-width: 640px) {
+    .score-grid {
+        grid-template-columns: 1fr;
+    }
+}

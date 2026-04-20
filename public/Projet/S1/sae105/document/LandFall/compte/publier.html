@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publier un trajet - LandRide</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../img/landfall_logo.webp">
+</head>
+<body>
+    <header>
+        <div class="left">
+            <div class="brand"><img src="../img/landfall_logo.webp" alt="Logo LandRide" class="logo"></div>
+            <nav class="nav-stack">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="https://landfall.se/">Landfall</a></li>
+            </nav>
+        </div>
+        <div class="actions">
+            <a href="tableau_de_bord.html" class="btn small">Mon Compte</a>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="publish-title">Économisez en respectant la planète</h1>
+        <form action="confirmation_trajet.html" class="publish-form">
+            
+            <div class="publish-grid-table">
+                <div class="publish-header">Information</div>
+                <div class="publish-header">Réponse</div>
+
+                <div class="publish-cell">
+                    <label for="heure_depart">Heure de Départ</label>
+                </div>
+                <div class="publish-cell">
+                    <input type="time" id="heure_depart" name="heure" required>
+                </div>
+
+                <div class="publish-cell">
+                    <label for="depart">Lieu de départ</label>
+                </div>
+                <div class="publish-cell">
+                    <input type="text" id="depart" name="depart" placeholder="Adresse de départ" required>
+                </div>
+
+                <div class="publish-cell">
+                    <label for="arrivee">Lieu d'arrivée</label>
+                </div>
+                <div class="publish-cell">
+                    <input type="text" id="arrivee" name="arrivee" placeholder="Adresse d'arrivée" required>
+                </div>
+
+                <div class="publish-cell">
+                    <label for="places">Nombre de passagers</label>
+                </div>
+                <div class="publish-cell">
+                    <input type="number" id="places" name="places" min="1" max="8" placeholder="Ex: 3" required>
+                </div>
+
+                <div class="publish-cell col-span-2" style="justify-content:center;">
+                    <div class="frequency-buttons">
+                        <label><input type="radio" name="freq" value="une_fois" checked><span>Une seule fois</span></label>
+                        <label><input type="radio" name="freq" value="quotidien"><span>Tous les jours</span></label>
+                        <label><input type="radio" name="freq" value="hebdo"><span>Tous les 7 jours</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-area">
+                <button type="submit" class="btn-publish-big">Partager mon trajet</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <ul class="footer-list">
+            <li>LandRide - Mobilité Landfall</li>
+            <li><a href="../legal/contact.html">Contact Admin</a></li>
+            <li><a href="../legal/cgu.html">CGU</a></li>
+            <li><a href="../legal/mentions.html">Mentions Légales</a></li>
+            <li><a href="../legal/rgpd.html">RGPD</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

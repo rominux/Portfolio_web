@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Location - LandRide</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/landfall_logo.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <div class="left">
+            <div class="brand">
+                <img src="img/landfall_logo.webp" alt="Logo LandRide" class="logo">
+            </div>
+            <nav>
+                <ul class="nav-stack">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="https://landfall.se/">Landfall</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="actions">
+            <a href="compte/connexion.html" class="btn small">Connexion / Inscription</a>
+            <a href="compte/publier.html" class="btn primary">Publier un trajet</a>
+        </div>
+    </header>
+
+    <main>
+        <h1>Location de véhicules éco-responsables</h1>
+        <p>Déplacez-vous sur le campus LandFall sans polluer (et avec style).</p>
+
+        <section class="vehicle-grid">
+            <article class="vehicle-card">
+                <img src="img/velo.jpg" alt="Vélo électrique" class="vehicle-img">
+                <div class="vehicle-info">
+                    <h3>Vélo Électrique "Wobbler"</h3>
+                    <p>Idéal pour les trajets inter-sites. Casque fourni.</p>
+                    <span class="vehicle-price">Gratuit pour 2h puis 1€/h</span>
+                    <form action="compte/confirmation_location.html">
+                        <button type="submit" class="btn primary" style="width:100%; margin-top:10px;">Réserver ce vélo</button>
+                    </form>
+                </div>
+            </article>
+
+            <article class="vehicle-card">
+                <img src="img/trottinette.jpg" alt="Trottinette" class="vehicle-img">
+                <div class="vehicle-info">
+                    <h3>Trottinette "Speedy"</h3>
+                    <p>Rapide et maniable. Autonomie de 20km.</p>
+                    <span class="vehicle-price">0.50€ le déblocage</span>
+                    <form action="compte/confirmation_location.html">
+                        <button type="submit" class="btn primary" style="width:100%; margin-top:10px;">Louer maintenant</button>
+                    </form>
+                </div>
+            </article>
+
+            <article class="vehicle-card">
+                <img src="img/voiture-e-lectrique.jpg" alt="Voiture électrique" class="vehicle-img">
+                <div class="vehicle-info">
+                    <h3>SUV Électrique de Service</h3>
+                    <p>Pour les déplacements professionnels nécessitant du matériel.</p>
+                    <span class="vehicle-price">Sur réservation RH</span>
+                    <form action="compte/confirmation_location.html">
+                        <button type="submit" class="btn primary" style="width:100%; margin-top:10px;">Demander les clés</button>
+                    </form>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <ul class="footer-list">
+            <li>LandRide - Mobilité Landfall</li>
+            <li><a href="legal/contact.html">Contact Admin</a></li>
+            <li><a href="legal/cgu.html">CGU</a></li>
+            <li><a href="legal/mentions.html">Mentions Légales</a></li>
+            <li><a href="legal/rgpd.html">RGPD</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

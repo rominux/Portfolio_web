@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - LandRide</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../img/landfall_logo.webp">
+</head>
+<body>
+    <header>
+        <div class="left">
+            <div class="brand"><img src="../img/landfall_logo.webp" alt="Logo" class="logo"></div>
+            <nav class="nav-stack">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="https://landfall.se/">Landfall</a></li>
+            </nav>
+        </div>
+        <div class="actions">
+            <a href="inscription.html" class="btn small">Inscription</a>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2>Connexion</h2>
+                <a href="../index.html" class="close-btn">✖</a>
+            </div>
+            <form action="tableau_de_bord.html" class="form-stacked">
+                <div>
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" required placeholder="Votre pseudo">
+                </div>
+                <div>
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" required placeholder="Votre mot de passe">
+                </div>
+                <button type="submit">Se connecter</button>
+            </form>
+            <div class="form-links">
+                <a href="mdp_oublie.html">Mot de passe oublié ?</a>
+                
+                <div class="text-link-group">
+                    <span>Pas de compte ?</span>
+                    <a href="inscription.html" style="font-weight:bold; color:var(--accent);">S'inscrire</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <ul class="footer-list">
+            <li>LandRide - Mobilité Landfall</li>
+            <li><a href="../legal/contact.html">Contact Admin</a></li>
+            <li><a href="../legal/cgu.html">CGU</a></li>
+            <li><a href="../legal/mentions.html">Mentions Légales</a></li>
+            <li><a href="../legal/rgpd.html">RGPD</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

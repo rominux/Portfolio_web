@@ -1,23 +1,251 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="generator" content="GitLab Pages">
-    <title>Plain HTML site using GitLab Pages</title>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Romain LEFEBVRE — IUT de Lille</title>
+    <meta name="description"
+        content="Portfolio universitaire de Romain Lefebvre, étudiant en BUT Informatique à l'IUT de Lille. Projets SAÉ Semestre 1 et 2.">
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="navbar">
-      <a href="https://pages.gitlab.io/plain-html/">Plain HTML Example</a>
-      <a href="https://gitlab.com/pages/plain-html/">Repository</a>
-      <a href="https://gitlab.com/pages/">Other Examples</a>
-    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
 
-    <h1>Hello World!</h1>
+<body>
 
-    <p>
-      This is a simple plain-HTML website on GitLab Pages, without any fancy static site generator.
-    </p>
-  </body>
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand"><span class="dot"></span>R. Lefebvre</a>
+            <div class="nav-links">
+                <a href="#s1" class="active">IUT S1</a>
+                <a href="Projet/S2/index.html">IUT S2</a>
+                <a href="Projet/autre/index.html">Projets perso</a>
+                <a href="mailto:romain.lefebvre2.etu@univ-lille.fr"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fas fa-graduation-cap"></i> BUT Informatique · IUT de Lille</div>
+            <h1>Romain <span>Lefebvre</span></h1>
+            <p class="hero-sub">Étudiant en 1ère année de BUT Informatique, délégué de promotion 2025–2026.<br>
+                Ce portfolio retrace mes apprentissages à travers les projets SAÉ de mon cursus.</p>
+            <div class="hero-meta">
+                <span class="hero-meta-item"><i class="fas fa-map-marker-alt"></i> IUT de Lille</span>
+                <span class="hero-meta-item"><i class="fas fa-calendar-alt"></i> 2025 – 2026</span>
+                <span class="hero-meta-item"><i class="fas fa-star"></i> Délégué</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── MAIN ─── -->
+    <main class="container">
+
+        <!-- SOMMAIRE TABLE -->
+        <section class="section" id="s1">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-list-ul"></i> Semestre 1</div>
+                <h2 class="section-title">Sommaire des projets SAÉ</h2>
+                <p class="section-desc">Cinq situations d'apprentissage et d'évaluation réalisées au cours du premier
+                    semestre.</p>
+            </div>
+
+            <table class="sommaire-table">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Titre</th>
+                        <th>Catégorie</th>
+                        <th>Statut</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="location.href='Projet/S1/sae101/index.html'">
+                        <td><span class="sae-num">SAÉ 1.01</span></td>
+                        <td><a href="Projet/S1/sae101/index.html">Pixel Art</a></td>
+                        <td><span class="cat-badge cat-dev">Développement</span></td>
+                        <td><span class="status-badge status-done">Terminé</span></td>
+                        <td><i class="fas fa-chevron-right" style="color:var(--text-light)"></i></td>
+                    </tr>
+                    <tr onclick="location.href='Projet/S1/sae102/index.html'">
+                        <td><span class="sae-num">SAÉ 1.02</span></td>
+                        <td><a href="Projet/S1/sae102/index.html">Tréflexion</a></td>
+                        <td><span class="cat-badge cat-algo">Optimisation</span></td>
+                        <td><span class="status-badge status-done">Terminé</span></td>
+                        <td><i class="fas fa-chevron-right" style="color:var(--text-light)"></i></td>
+                    </tr>
+                    <tr onclick="location.href='Projet/S1/sae103/index.html'">
+                        <td><span class="sae-num">SAÉ 1.03</span></td>
+                        <td><a href="Projet/S1/sae103/index.html">Installation Poste</a></td>
+                        <td><span class="cat-badge cat-sys">Système</span></td>
+                        <td><span class="status-badge status-done">Terminé</span></td>
+                        <td><i class="fas fa-chevron-right" style="color:var(--text-light)"></i></td>
+                    </tr>
+                    <tr onclick="location.href='Projet/S1/sae104/index.html'">
+                        <td><span class="sae-num">SAÉ 1.04</span></td>
+                        <td><a href="Projet/S1/sae104/index.html">Introduction aux BDD</a></td>
+                        <td><span class="cat-badge cat-bdd">Données</span></td>
+                        <td><span class="status-badge status-done">Terminé</span></td>
+                        <td><i class="fas fa-chevron-right" style="color:var(--text-light)"></i></td>
+                    </tr>
+                    <tr onclick="location.href='Projet/S1/sae105/index.html'">
+                        <td><span class="sae-num">SAÉ 1.05</span></td>
+                        <td><a href="Projet/S1/sae105/index.html">LandRide</a></td>
+                        <td><span class="cat-badge cat-web">Web &amp; Gestion</span></td>
+                        <td><span class="status-badge status-done">Terminé</span></td>
+                        <td><i class="fas fa-chevron-right" style="color:var(--text-light)"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SAÉ GRID -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-th-large"></i> Galerie</div>
+                <h2 class="section-title">Tous les projets</h2>
+            </div>
+            <div class="sae-grid">
+
+                <a href="Projet/S1/sae101/index.html" class="sae-card">
+                    <div class="card-header">
+                        <div class="card-icon">🎨</div>
+                        <span class="card-num-badge">SAÉ 1.01</span>
+                    </div>
+                    <h3>Pixel Art</h3>
+                    <p>Manipulation de matrices de pixels en Java, algorithmes de traitement d'image et encodage des
+                        couleurs.</p>
+                    <div class="card-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">iJava</span>
+                        <span class="tag">Algorithmique</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-link">Voir la fiche <i class="fas fa-arrow-right"></i></span>
+                        <span class="status-badge status-done">Terminé</span>
+                    </div>
+                </a>
+
+                <a href="Projet/S1/sae102/index.html" class="sae-card">
+                    <div class="card-header">
+                        <div class="card-icon">🃏</div>
+                        <span class="card-num-badge">SAÉ 1.02</span>
+                    </div>
+                    <h3>Tréflexion</h3>
+                    <p>Jeu de stratégie sur grille 5×5 s'appuyant sur des combinaisons de poker, avec interface ASCII
+                        Art et jokers pédagogiques.</p>
+                    <div class="card-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">ASCII Art</span>
+                        <span class="tag">Binôme</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-link">Voir la fiche <i class="fas fa-arrow-right"></i></span>
+                        <span class="status-badge status-done">Terminé</span>
+                    </div>
+                </a>
+
+                <a href="Projet/S1/sae103/index.html" class="sae-card">
+                    <div class="card-header">
+                        <div class="card-icon">🖥️</div>
+                        <span class="card-num-badge">SAÉ 1.03</span>
+                    </div>
+                    <h3>Installation Poste</h3>
+                    <p>Installation et administration d'un poste Linux Debian en machine virtuelle, avec guide technique
+                        rédigé en anglais.</p>
+                    <div class="card-tags">
+                        <span class="tag">Linux</span>
+                        <span class="tag">VirtualBox</span>
+                        <span class="tag">Anglais</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-link">Voir la fiche <i class="fas fa-arrow-right"></i></span>
+                        <span class="status-badge status-done">Terminé</span>
+                    </div>
+                </a>
+
+                <a href="Projet/S1/sae104/index.html" class="sae-card">
+                    <div class="card-header">
+                        <div class="card-icon">🗄️</div>
+                        <span class="card-num-badge">SAÉ 1.04</span>
+                    </div>
+                    <h3>Introduction aux BDD</h3>
+                    <p>Modélisation MCD d'une exploitation viticole et implémentation d'une base de données
+                        relationnelle sous Microsoft Access.</p>
+                    <div class="card-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Access</span>
+                        <span class="tag">MCD</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-link">Voir la fiche <i class="fas fa-arrow-right"></i></span>
+                        <span class="status-badge status-done">Terminé</span>
+                    </div>
+                </a>
+
+                <a href="Projet/S1/sae105/index.html" class="sae-card">
+                    <div class="card-header">
+                        <div class="card-icon">🚗</div>
+                        <span class="card-num-badge">SAÉ 1.05</span>
+                    </div>
+                    <h3>LandRide</h3>
+                    <p>Prototype de plateforme web de mobilité durable pour l'entreprise Landfall — covoiturage,
+                        éco-points et gestion de profil.</p>
+                    <div class="card-tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">Projet d'équipe</span>
+                        <span class="tag">Dark Mode</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-link">Voir la fiche <i class="fas fa-arrow-right"></i></span>
+                        <span class="status-badge status-done">Terminé</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- SEMESTRE 2 + PERSO TEASER -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-label"><i class="fas fa-layer-group"></i> Autres rubriques</div>
+                <h2 class="section-title">À explorer</h2>
+            </div>
+            <a href="Projet/S2/index.html" class="sae-card">
+                <div class="card-header">
+                    <div class="card-icon">📚</div>
+                    <span class="card-num-badge" style="background:var(--gradient-dark)">IUT – S2</span>
+                </div>
+                <h3>Semestre 2</h3>
+                <p>Les projets du second semestre seront ajoutés ici au fil de leur réalisation.</p>
+                <div class="card-footer">
+                    <span class="card-link">Accéder <i class="fas fa-arrow-right"></i></span>
+                    <span class="status-badge status-todo">À venir</span>
+                </div>
+            </a>
+            <a href="Projet/autre/index.html" class="sae-card">
+                <div class="card-header">
+                    <div class="card-icon">🚀</div>
+                    <span class="card-num-badge" style="background:linear-gradient(135deg,#7c3aed,#06b6d4)">Perso</span>
+                </div>
+                <h3>Projets personnels</h3>
+                <p>Side-projects, hobbies et expérimentations hors cursus universitaire.</p>
+                <div class="card-footer">
+                    <span class="card-link">Accéder <i class="fas fa-arrow-right"></i></span>
+                    <span class="status-badge status-todo">À venir</span>
+                </div>
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <strong>Romain LEFEBVRE</strong> — Portfolio Universitaire · IUT de Lille</p>
+    </footer>
+
+</body>
+
 </html>
-

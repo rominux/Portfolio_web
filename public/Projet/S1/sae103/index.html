@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAÉ 1.03 – Installation Poste | Romain LEFEBVRE</title>
+    <meta name="description"
+        content="Fiche portfolio SAÉ 1.03 — Installation d'un poste de travail Linux Debian en machine virtuelle, guide technique en anglais.">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a href="../../../index.html" class="nav-brand"><span class="dot"></span>R. Lefebvre</a>
+            <div class="nav-links">
+                <a href="../../../index.html#s1" class="active">IUT S1</a>
+                <a href="../../S2/index.html">IUT S2</a>
+                <a href="../../autre/index.html">Projets perso</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sae-page">
+
+        <a href="../../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+
+        <div class="sae-hero">
+            <div class="sae-hero-content">
+                <span class="sae-num-lg">SAÉ 1.03</span>
+                <h1>Installation &amp; Configuration d'un Poste de Travail</h1>
+                <p>Administrer des systèmes informatiques communicants — Mise en place d'un environnement Linux complet
+                    sous VirtualBox et rédaction d'un guide technique en anglais.</p>
+            </div>
+        </div>
+
+        <figure class="sae-visual">
+            <img src="img/vm.png" alt="Capture de la machine virtuelle Debian 12 configurée dans VirtualBox">
+            <figcaption>Machine virtuelle Debian 12 configurée dans VirtualBox — partitionnement manuel du disque,
+                création des utilisateurs et attribution des droits administrateur (<code>sudo</code>).</figcaption>
+        </figure>
+
+        <div class="content-block">
+            <h2><i class="fas fa-info-circle"></i> Présentation du projet</h2>
+            <p>La SAÉ 1.03 introduit la compétence d'administration système, fondamentale dans tout cursus informatique.
+                L'objectif est d'installer et de configurer un environnement de travail complet sous Linux (distribution
+                Debian 12) au sein d'une machine virtuelle créée avec VirtualBox. Ce projet vise à comprendre
+                l'architecture d'un système d'exploitation, ses composants essentiels et les opérations d'administration
+                courantes.</p>
+            <p>L'installation comprend plusieurs étapes clés : téléchargement de l'image ISO officielle de Debian,
+                création de la machine virtuelle (allocation CPU, RAM et disque virtuel), partitionnement manuel du
+                disque en plusieurs partitions fonctionnelles (/boot, /, /home et swap), et configuration du réseau. Une
+                fois le système installé, les étapes d'administration permettent de créer des utilisateurs, d'attribuer
+                les droits sudo et d'installer les paquets logiciels via le gestionnaire apt.</p>
+            <p>Au-delà de l'aspect technique, cette SAÉ comporte une dimension de communication professionnelle : la
+                rédaction d'un guide utilisateur complet en anglais. Ce document décrit pas à pas la procédure
+                d'installation et de configuration, depuis la création du disque virtuel jusqu'à la gestion des droits.
+                L'objectif est de produire une documentation suffisamment précise pour qu'un lecteur non-expert puisse
+                reproduire la démarche de façon autonome, avec captures d'écran à l'appui.</p>
+            <p>Ce projet représente ma première expérience concrète avec Linux, un écosystème radicalement différent de
+                Windows. Il m'a ouvert les yeux sur la puissance du terminal Bash, la philosophie Unix (tout est
+                fichier, outils composables) et l'importance de la virtualisation comme outil d'apprentissage et de test
+                sécurisé dans tous les métiers de l'informatique.</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-block">
+                <h3><i class="fas fa-laptop-code"></i> Compétences techniques &amp; savoir-faire</h3>
+                <ul>
+                    <li>Installation d'un OS Linux (Debian 12) depuis une image ISO en mode guidé et manuel</li>
+                    <li>Configuration d'une machine virtuelle VirtualBox (CPU, RAM, réseau NAT/Bridge, disque)</li>
+                    <li>Partitionnement manuel du disque (/boot, /, /home, swap)</li>
+                    <li>Administration Linux : gestion des utilisateurs, groupes et droits (<code>adduser</code>,
+                        <code>usermod</code>, <code>sudo</code>)</li>
+                    <li>Rédaction de documentation technique en anglais avec captures d'écran annotées</li>
+                </ul>
+            </div>
+            <div class="info-block">
+                <h3><i class="fas fa-users"></i> Savoir-être requis</h3>
+                <ul>
+                    <li><strong>Méthode :</strong> suivre une procédure pas à pas sans sauter d'étape pour éviter les
+                        erreurs de configuration</li>
+                    <li><strong>Rigueur documentaire :</strong> capturer et annoter chaque étape pour le guide anglais
+                    </li>
+                    <li><strong>Adaptabilité :</strong> résoudre les problèmes inattendus (drivers, réseau) en cherchant
+                        dans la documentation officielle</li>
+                    <li><strong>Communication écrite :</strong> rédiger en anglais de façon claire, structurée et
+                        professionnelle</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2><i class="fas fa-folder-open"></i> Livrables téléchargeables</h2>
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fas fa-file-powerpoint"></i></div>
+                <div class="deliverable-info">
+                    <strong>Installation Poste.pptx</strong>
+                    <a href="document/Installation Poste.pptx" download>Télécharger la présentation <i
+                            class="fas fa-download"></i></a>
+                </div>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fas fa-file-word"></i></div>
+                <div class="deliverable-info">
+                    <strong>explication vm.docx</strong>
+                    <a href="document/explication vm.docx" download>Télécharger le guide anglais <i
+                            class="fas fa-download"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h2><i class="fas fa-pen-alt"></i> Bilan personnel</h2>
+            <p>Cette SAÉ a représenté une véritable découverte. Je n'avais jamais utilisé Linux autrement que de façon
+                très superficielle, et me retrouver à tout configurer depuis un terminal m'a d'abord déstabilisé.
+                L'absence d'interface graphique familière force à comprendre ce qu'on fait réellement plutôt que de
+                suivre intuitivement des icônes. C'est inconfortable au départ, mais extrêmement formateur.</p>
+            <p>La rédaction du guide en anglais a été un défi supplémentaire et très instructif. Il ne s'agissait pas
+                simplement de traduire des étapes techniques : il fallait les rendre compréhensibles pour un lecteur
+                non-spécialiste, trouver le bon niveau de détail et adopter un registre professionnel. Plusieurs
+                relectures et reformulations ont été nécessaires pour atteindre la clarté souhaitée.</p>
+            <p>Ce projet m'a convaincu de l'importance de la virtualisation dans n'importe quel parcours informatique.
+                Travailler dans un environnement isolé, pouvoir snapshot et restaurer en cas d'erreur, reproduire des
+                configurations sans risque pour la machine hôte — ce sont des habitudes que j'ai conservées et que
+                j'utilise encore régulièrement dans mes expérimentations personnelles.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <strong>Romain LEFEBVRE</strong> — Portfolio Universitaire</p>
+    </footer>
+</body>
+
+</html>
