@@ -40,13 +40,35 @@ Le site est automatiquement déployé sur **GitLab Pages** à chaque push sur la
 
 ```
 /
-├── public/              # Fichiers servis par GitLab Pages
-│   ├── index.html       # Page d'accueil
-│   ├── style.css        # Styles globaux
-│   ├── Projet/
-│   │   ├── Universite/  # Projets BUT Informatique
-│   │   └── autre/       # Projets personnels
-│   └── ...
+├── public/                  # Fichiers servis par GitLab Pages
+│   ├── index.html           # Page d'accueil
+│   ├── style.css            # Styles globaux
+│   ├── favicon.png          # Favicon du site
+│   ├── img/                 # Images (logos sociaux, etc.)
+│   │   ├── logo_github.png
+│   │   ├── logo_gitlab.png
+│   │   ├── logo_linkedin.png
+│   │   ├── logo_mail.png
+│   │   └── logo_univ.png
+│   ├── document/            # Documents divers
+│   │   └── toadd.txt
+│   └── Projet/              # Section projets
+│       ├── Universite/      # Projets BUT Informatique
+│       │   ├── S1/          # Semestre 1
+│       │   │   ├── sae101/
+│       │   │   ├── sae102/
+│       │   │   ├── sae103/
+│       │   │   ├── sae104/
+│       │   │   └── sae105/
+│       │   └── S2/          # Semestre 2
+│       │       ├── SAE201_202/
+│       │       ├── SAE203_Lefebvre_Plantard_Belot/
+│       │       ├── SAE204/
+│       │       └── SAE205/
+│       ├── Lycee/           # Projets lycée
+│       │   └── MUNL2025/
+│       ├── Euroweek/        # Projet Euroweek
+│       └── autre/           # Projets personnels
 └── README.md
 ```
 
