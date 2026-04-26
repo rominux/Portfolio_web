@@ -14,12 +14,6 @@ Ce portfolio présente mes projets universitaires, mes compétences techniques e
 - **Outils** : Git, Linux, MySQL, VS Code
 - **Concepts** : POO, Algorithmique, Base de données, UML, Méthode agile
 
-## Projets en vedette
-
-- **SAÉ 1.05/1.06 LandRide** — Plateforme web covoiturage & location véhicules (HTML/CSS, Équipe de 4)
-- **SAÉ 1.02 Tréflexion** — Site e-commerce instruments de musique (PHP/MySQL)
-- **SAÉ 2.03** — Application JavaFX de gestion d'inventaire
-
 ## Contact
 
 - **Email** : romain.lefebvre2.etu@univ-lille.fr
